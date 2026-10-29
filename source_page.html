@@ -1,0 +1,945 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Hollow · Private money on Solana</title>
+<meta name="description" content="Shield SOL and USDC, then send and withdraw with nothing pointing back to you. Zero-knowledge private pools on Solana.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#030405">
+<link rel="canonical" href="https://www.usehollow.xyz/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Hollow">
+<meta property="og:title" content="Hollow · Private money on Solana">
+<meta property="og:description" content="Shield SOL and USDC, then send and withdraw with nothing pointing back to you. Zero-knowledge private pools on Solana.">
+<meta property="og:url" content="https://www.usehollow.xyz/">
+<meta property="og:image" content="https://www.usehollow.xyz/hollow-share.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Hollow: Leave no trace. Private SOL and USDC on Solana.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@usehollowxyz">
+<meta name="twitter:title" content="Hollow · Private money on Solana">
+<meta name="twitter:description" content="Shield SOL and USDC, then send and withdraw with nothing pointing back to you. Zero-knowledge private pools on Solana.">
+<meta name="twitter:image" content="https://www.usehollow.xyz/hollow-share.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one cinematic scene per section — dust hood, pinned scroll story, shell game, statement, flashlight wordmark. */
+:root{
+  --bg:#030405;
+  --ink:#EEF2F6;
+  --soft:#A9B3BD;
+  --dim:#6F7983;
+  --line:rgba(255,255,255,.08);
+  --accent:#CFE3F5;
+  --hot:#FF8E7A;
+  --warn:#E9C27A;
+  --display:'Syne','Arial Black',system-ui,sans-serif;
+  --headline:'Geist',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
+  --body:'Geist',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'Geist Mono',ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:var(--ink)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:8px}
+h1,h2{text-wrap:balance}
+.wrap{width:100%;max-width:1280px;margin:0 auto;padding-inline:24px}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:54px;padding:0 28px;border-radius:999px;border:0;background:var(--ink);color:var(--bg);text-decoration:none;font:600 16px var(--body);cursor:pointer;transition:transform .3s cubic-bezier(.2,.7,.1,1),box-shadow .3s}
+.btn:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 0 0 6px rgba(207,227,245,.08),0 18px 50px -10px rgba(207,227,245,.5)}
+.btn .arr{display:inline-block;transition:transform .3s}
+.btn:hover .arr{transform:translate(3px,-3px)}
+.ghost{display:inline-flex;align-items:center;gap:10px;min-height:54px;padding:0 26px;border-radius:999px;border:1px solid rgba(255,255,255,.16);color:var(--ink);text-decoration:none;font-size:16px;transition:background .25s,border-color .25s}
+.ghost:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.3)}
+
+
+
+/* hero */
+.hero{position:relative;height:100vh;height:100svh;min-height:640px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;cursor:crosshair}
+.halo{position:absolute;left:50%;top:42%;width:980px;height:980px;max-width:none;border-radius:50%;background:radial-gradient(circle,rgba(207,227,245,.2) 0%,rgba(207,227,245,.07) 28%,transparent 62%);transform:translate(-50%,-50%);animation:breathe 6s ease-in-out infinite;pointer-events:none}
+@keyframes breathe{0%,100%{opacity:.75;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.06)}}
+.ghostword{position:absolute;left:0;right:0;top:28%;text-align:center;font:800 22vw/1 var(--display);letter-spacing:-.06em;color:rgba(255,255,255,.028);pointer-events:none;user-select:none;white-space:nowrap;animation:wm 2s ease both}
+@keyframes wm{from{opacity:0;letter-spacing:.2em}to{opacity:1;letter-spacing:-.06em}}
+.hero canvas,.stage canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero-copy{position:relative;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:32px;padding-block:0 56px;pointer-events:none}
+.hero-copy > *{pointer-events:auto}
+.hero-main{flex:1 1 520px;min-width:0;display:flex;flex-direction:column;gap:22px}
+.hero h1{margin:0;font:700 clamp(56px,7.6vw,124px)/.92 var(--headline);letter-spacing:-.055em}
+.hero h1 em,.phase h2 em{font-style:normal;color:var(--accent)}
+.hero p{margin:0;max-width:40ch;font-size:18px;line-height:1.55;color:var(--soft)}
+.row{display:flex;flex-wrap:wrap;gap:12px}
+.hero-side{display:flex;flex-direction:column;align-items:flex-end;gap:10px;color:var(--dim);font-size:11px}
+.pulse{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.ca{display:flex;align-items:center;gap:14px;padding:10px 10px 10px 12px;margin-bottom:10px;border-radius:20px;border:1px solid rgba(207,227,245,.16);background:linear-gradient(180deg,rgba(207,227,245,.07),rgba(207,227,245,.02));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 18px 50px -24px rgba(207,227,245,.35);text-transform:none;letter-spacing:0}
+.ca-icon{flex:none;width:44px;height:44px;border-radius:50%;background:radial-gradient(circle at 50% 35%,rgba(207,227,245,.22),rgba(207,227,245,.04));box-shadow:inset 0 0 0 1px rgba(207,227,245,.22);display:grid;place-items:center}
+.ca-icon img{width:30px;height:30px;border-radius:7px}
+.ca-name{display:flex;flex-direction:column;gap:4px;margin-right:6px;min-width:0}
+.ca-name strong{font:700 17px var(--body);color:var(--ink);letter-spacing:-.01em}
+.ca-name small{display:inline-flex;white-space:nowrap;align-items:center;gap:7px;font:500 10px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.ca-name small i{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+.ca-addr{display:flex;margin-left:auto;flex:none;align-items:center;min-height:44px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(3,4,5,.55);cursor:pointer;transition:border-color .2s,background .2s}
+.ca-addr:hover{border-color:rgba(207,227,245,.3);background:rgba(207,227,245,.05)}
+.ca-addr code{padding:0 14px;white-space:nowrap;font:500 13px var(--mono);color:var(--ink)}
+.ca-copy{display:grid;place-items:center;width:42px;align-self:stretch;border:0;border-left:1px solid rgba(255,255,255,.12);border-radius:0 12px 12px 0;background:none;color:var(--soft);cursor:pointer;transition:color .2s,background .2s}
+.ca-copy:hover{color:var(--ink);background:rgba(255,255,255,.05)}
+.ca-copy svg{width:15px;height:15px}
+.ca-copy .ok,.ca.done .ca-copy .cp{display:none}
+.ca.done .ca-copy .ok{display:block;color:var(--accent);animation:caPop .5s cubic-bezier(.3,1.7,.5,1)}
+@keyframes caPop{from{opacity:0;transform:scale(.2) rotate(-25deg)}}
+.ca-addr code{display:grid;justify-items:center;overflow:hidden}
+.ca-addr code > span{grid-area:1/1;transition:opacity .25s,transform .35s cubic-bezier(.2,.7,.1,1)}
+.ca-msg{opacity:0;transform:translateY(110%);color:var(--accent)}
+.ca.done .ca-full{opacity:0;transform:translateY(-110%)}
+.ca.done .ca-msg{opacity:1;transform:none}
+.ca{position:relative;overflow:hidden}
+.ca::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 35%,rgba(207,227,245,.24) 50%,transparent 65%);transform:translateX(-110%);pointer-events:none}
+.ca.done::after{animation:caSweep .9s cubic-bezier(.3,.6,.2,1)}
+.ca.done{animation:caGlow 1.4s ease-out}
+@keyframes caSweep{to{transform:translateX(110%)}}
+@keyframes caGlow{from{border-color:rgba(207,227,245,.75);box-shadow:0 0 0 4px rgba(207,227,245,.14),0 18px 60px -10px rgba(207,227,245,.7)}}
+@media (prefers-reduced-motion:reduce){.ca.done,.ca.done::after,.ca.done .ca-copy .ok{animation:none}}
+@media (max-width:400px){.ca{gap:8px;padding:8px 8px 8px 10px}.ca-icon{width:36px;height:36px}.ca-icon img{width:24px;height:24px}.ca-name{margin-right:0}.ca-name strong{font-size:15px}.ca-name small{font-size:9px;letter-spacing:.08em;gap:6px}.ca-addr{min-height:40px}.ca-addr code{padding:0 10px;font-size:12px}.ca-copy{width:36px}}
+.rise{animation:rise .9s cubic-bezier(.2,.7,.1,1) both}
+.rise.d1{animation-delay:.1s}.rise.d2{animation-delay:.2s}.rise.d3{animation-delay:.3s}.rise.d4{animation-delay:.4s}
+@keyframes rise{from{opacity:0;transform:translateY(40px);filter:blur(10px)}to{opacity:1;transform:none;filter:none}}
+.bob{display:inline-block;animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+/* story */
+.story{position:relative;height:320vh;min-height:2400px}
+.stage{position:sticky;top:env(safe-area-inset-top,0px);height:100vh;min-height:620px;max-height:980px;overflow:hidden}
+.stage-top{position:relative;display:flex;justify-content:space-between;gap:24px;padding-block:96px 0}
+.phases{position:relative;flex:1 1 auto;min-width:0;max-width:620px;height:260px}
+.phase{position:absolute;inset:0;display:flex;flex-direction:column;gap:16px;opacity:0;transform:translateY(30px);filter:blur(8px);transition:opacity .7s ease,transform .9s cubic-bezier(.2,.7,.1,1),filter .7s ease}
+.phase.is-past{transform:translateY(-30px)}
+.phase.is-active{opacity:1;transform:none;filter:none}
+.phase .mono{color:var(--accent)}
+.phase[data-i="0"] .mono{color:var(--hot)}
+.phase h2{margin:0;font:700 clamp(40px,5vw,76px)/.95 var(--headline);letter-spacing:-.05em}
+.phase p{margin:0;max-width:40ch;font-size:17px;line-height:1.55;color:var(--soft)}
+.rail{flex:none;display:flex;flex-direction:column;gap:14px;padding-top:6px}
+.rail span{display:flex;align-items:center;justify-content:flex-end;gap:10px;font:500 11px var(--mono);letter-spacing:.12em;color:#4E5762;transition:color .4s}
+.rail i{display:block;width:18px;height:2px;border-radius:2px;background:rgba(255,255,255,.14);transition:width .5s cubic-bezier(.2,.7,.1,1),background .4s}
+.rail span.on{color:var(--ink)}
+.rail span.on i{width:48px}
+.rail span.done i,.rail span.on i{background:var(--accent)}
+.progress{position:absolute;left:0;right:0;bottom:36px}
+.progress .wrap{display:flex;align-items:center;gap:16px;color:var(--dim);font-size:11px}
+.progress .track{flex:1 1 auto;height:1px;background:var(--line);overflow:hidden}
+.progress .bar{display:block;height:100%;background:var(--accent);transform-origin:left;transform:scaleX(0)}
+@media (max-width:640px){.rail{display:none}.stage-top{padding-block:84px 0}.hero-side{align-items:flex-start}}
+
+/* game */
+.game{position:relative;padding-block:140px 150px;border-top:1px solid rgba(255,255,255,.05);overflow:hidden}
+.game::before{content:"";position:absolute;left:50%;top:38%;width:1100px;height:700px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(207,227,245,.07),transparent);pointer-events:none}
+.game-head{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px}
+.game-head .mono{color:var(--accent)}
+.game h2,.enter h2{margin:0;font:700 clamp(48px,6.4vw,96px)/.95 var(--headline);letter-spacing:-.055em}
+.game-head p{margin:0;min-height:56px;max-width:46ch;font-size:18px;line-height:1.55;color:var(--soft);transition:color .3s}
+.game-head p.reveal{color:var(--ink)}
+.hud{position:relative;display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:6px}
+.hud span{display:inline-flex;align-items:center;gap:10px;padding:8px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02);color:var(--dim);font-size:10px}
+.hud b{font:600 13px var(--mono);letter-spacing:0;color:var(--ink);font-variant-numeric:tabular-nums}
+.table{position:relative;max-width:920px;height:360px;margin:34px auto 0}
+.floor{position:absolute;left:-4%;right:-4%;bottom:-40px;height:150px;perspective:600px;pointer-events:none}
+.floor::before{content:"";position:absolute;inset:0;transform:rotateX(72deg);transform-origin:50% 100%;
+  background-image:linear-gradient(rgba(207,227,245,.10) 1px,transparent 1px),linear-gradient(90deg,rgba(207,227,245,.10) 1px,transparent 1px);background-size:46px 46px;
+  -webkit-mask-image:radial-gradient(ellipse 60% 90% at 50% 100%,#000 30%,transparent 75%);mask-image:radial-gradient(ellipse 60% 90% at 50% 100%,#000 30%,transparent 75%)}
+.floor::after{content:"";position:absolute;left:10%;right:10%;bottom:28px;height:70px;border-radius:50%;background:radial-gradient(closest-side,rgba(207,227,245,.16),transparent)}
+.spot{position:absolute;top:-6px;bottom:30px;width:240px;margin-left:-120px;pointer-events:none;opacity:1;-webkit-mask-image:linear-gradient(180deg,transparent,#000 22%);mask-image:linear-gradient(180deg,transparent,#000 22%);
+  background:linear-gradient(180deg,rgba(207,227,245,.22),rgba(207,227,245,.05) 70%,transparent);clip-path:polygon(42% 0,58% 0,100% 100%,0 100%);
+  filter:blur(6px);transition:left .5s cubic-bezier(.2,.7,.1,1),opacity .6s ease,width .6s ease,margin .6s ease}
+.spot.off{opacity:0}
+.spot.flood{left:50%!important;width:100%;margin-left:-50%;opacity:.7}
+.hood{position:absolute;bottom:36px;width:20%;height:250px;display:flex;justify-content:center;transition:left .3s cubic-bezier(.5,0,.3,1)}
+.hood.hop button{animation:hop .3s ease}
+@keyframes hop{50%{transform:translateY(-22px) rotate(-3deg)}}
+.hood .shadow{position:absolute;bottom:-8px;left:50%;width:110px;height:18px;margin-left:-55px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.85),transparent);transition:transform .5s cubic-bezier(.2,.7,.1,1),opacity .5s}
+.hood.lifted .shadow{transform:scale(.6);opacity:.5}
+.coin{position:absolute;bottom:18px;left:50%;width:58px;height:58px;margin-left:-29px;opacity:0;z-index:1;transition:transform .7s cubic-bezier(.3,1.4,.5,1),opacity .4s;filter:drop-shadow(0 8px 18px rgba(0,0,0,.6)) drop-shadow(0 0 16px rgba(207,227,245,.25))}
+.coin svg{width:100%;height:100%;display:block}
+.coin .spin{position:relative;width:100%;height:100%;border-radius:50%;overflow:hidden;animation:spin 3.2s linear infinite}
+@keyframes spin{0%{transform:rotateY(0)}50%{transform:rotateY(180deg)}100%{transform:rotateY(360deg)}}
+.coin .spin::after{content:"";position:absolute;inset:0;border-radius:50%;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.6) 50%,transparent 65%);background-size:250% 100%;animation:shine 2.4s ease-in-out infinite;mix-blend-mode:overlay}
+@keyframes shine{from{background-position:150% 0}to{background-position:-50% 0}}
+.coin-label{position:absolute;left:50%;bottom:-24px;transform:translateX(-50%);font:600 10px var(--mono);letter-spacing:.12em;color:var(--accent);white-space:nowrap;opacity:0;transition:opacity .4s .3s}
+.revealed .coin-label{opacity:1}
+.revealed .coin .spin{animation:pop .6s cubic-bezier(.3,1.6,.5,1) backwards,spin 3.2s .6s linear infinite}
+@keyframes pop{from{transform:scale(.3)}}
+.hood button{position:absolute;bottom:0;width:min(128px,92%);aspect-ratio:120/132;height:auto;padding:0;border:0;background:transparent;z-index:2;transition:transform .55s cubic-bezier(.2,.7,.1,1),filter .3s}
+.hood button:not([disabled]){cursor:pointer}
+.hood button:not([disabled]):hover{transform:translateY(-10px);filter:drop-shadow(0 0 22px rgba(207,227,245,.5))}
+.hood svg{width:100%;height:100%;overflow:visible}
+.hood .eye{transition:opacity .3s}
+.hood.picked .cloak{stroke:#CFE3F5;stroke-width:.5}
+@media (max-width:640px){.coin{width:44px;height:44px;margin-left:-22px}.hood .shadow{width:70px;margin-left:-35px}.table{height:300px}.hud span{padding:6px 10px}}
+.game-cta{display:flex;justify-content:center;min-height:56px;margin-top:12px}
+
+/* statement */
+.clean{padding-block:150px;border-top:1px solid rgba(255,255,255,.05)}
+.clean .wrap{display:flex;flex-direction:column;gap:72px}
+.big{margin:0;font:700 clamp(40px,10.5vw,168px)/.9 var(--body);letter-spacing:-.065em;display:flex;flex-wrap:wrap;gap:0 .22em}
+.big .n{color:var(--dim)}.big .a{color:var(--accent)}
+.big span{display:inline-block;will-change:filter,opacity,transform}
+.points{display:flex;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.1)}
+.points div{flex:1 1 280px;min-width:0;padding:28px 28px 0 0;display:flex;flex-direction:column;gap:10px}
+.points .mono{font-size:11px;color:var(--accent)}
+.points p{margin:0;font-size:17px;line-height:1.5;color:#C9D2DB}
+@supports (animation-timeline: view()){
+  .slide{animation:slide linear both;animation-timeline:view();animation-range:entry 0% cover 30%}
+}
+@keyframes word{from{opacity:.25;filter:blur(12px);transform:translateY(30px)}to{opacity:1;filter:none;transform:none}}
+@keyframes slide{from{opacity:.2;transform:translateY(60px)}to{opacity:1;transform:none}}
+
+/* enter */
+.enter{position:relative;padding-block:140px 120px;border-top:1px solid rgba(255,255,255,.05);overflow:hidden;display:flex;flex-direction:column;align-items:center;text-align:center;gap:28px}
+.enter .mono{color:var(--dim)}
+.flashbox{position:relative;width:100%}
+.flashbox div{font:800 19vw/.9 var(--display);letter-spacing:-.06em;user-select:none}
+.flashbox .base{color:rgba(255,255,255,.045)}
+.flashbox .lit{position:absolute;inset:0;color:var(--accent);-webkit-mask-image:radial-gradient(circle 220px at var(--cx,-999px) var(--cy,-999px),#000 0%,rgba(0,0,0,.4) 50%,transparent 100%);mask-image:radial-gradient(circle 220px at var(--cx,-999px) var(--cy,-999px),#000 0%,rgba(0,0,0,.4) 50%,transparent 100%)}
+.enter p{margin:0;max-width:40ch;font-size:18px;line-height:1.55;color:var(--soft)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+body:not(.ready) .rise,body:not(.ready) .ghostword{animation-play-state:paused}
+
+@media (prefers-reduced-motion:reduce){
+  .halo,.ghostword,.pulse,.rise,.bob,.slide,.coin .spin,.coin .spin::after,.hood.hop button{animation:none}
+  .phase,.hood,.coin,.hood button{transition:none}
+}
+</style>
+  <script type="module" crossorigin src="/assets/hosts-Dhq3J-lZ.js"></script>
+  <script type="module" crossorigin src="/assets/site-nav-CTcSYDIB.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/hosts-DyUKjrHR.css">
+  <link rel="stylesheet" crossorigin href="/assets/site-nav-CgcRjVws.css">
+  <link rel="stylesheet" crossorigin href="/assets/loader-LzncGZh9.css">
+</head>
+<body>
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader-inner">
+    <svg viewBox="0 0 28 28">
+      <path class="lh-fill" d="M14 2 C9 3 6 8 5.5 13 C5 18 4 22 3 26 L25 26 C24 22 23 18 22.5 13 C22 8 19 3 14 2 Z"/>
+      <path class="lh-outer" d="M14 2 C9 3 6 8 5.5 13 C5 18 4 22 3 26 L25 26 C24 22 23 18 22.5 13 C22 8 19 3 14 2 Z"/>
+      <path class="lh-void" d="M14 8 C10.5 8.3 9 11 9 14 C9 17 11 19.5 14 19.8 C17 19.5 19 17 19 14 C19 11 17.5 8.3 14 8 Z"/>
+      <circle class="lh-eye" cx="12" cy="14" r="1.1"/><circle class="lh-eye" cx="16" cy="14" r="1.1"/>
+    </svg>
+    <div class="loader-word">hollow</div>
+    <div class="loader-bar"><span></span></div>
+    <div class="loader-status">Entering the dark</div>
+  </div>
+</div>
+<script>
+(() => {
+  // The intro plays once when you first enter (per tab). Reloads and pages you open
+  // afterwards in the same visit skip it. Pages that load data first set <html data-wait-app>
+  // and call window.hollowLoaded() when ready.
+  const el = document.getElementById('loader');
+  const finish = () => { document.body.classList.add('ready'); document.dispatchEvent(new Event('hollow:ready')); };
+  let seen = false;
+  try { seen = sessionStorage.getItem('hollow-seen') === '1'; sessionStorage.setItem('hollow-seen', '1'); } catch (e) {}
+  if (seen) { el.remove(); window.hollowLoaded = () => {}; finish(); return; }
+  const bar = el.querySelector('.loader-bar span');
+  const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const min = reduce ? 0 : 850;
+  const start = performance.now();
+  let p = 0, pending = 'waitApp' in document.documentElement.dataset ? 2 : 1, done = false;
+  const tick = setInterval(() => { p += (0.92 - p) * 0.1; bar.style.setProperty('--p', p.toFixed(3)); }, 80);
+  window.hollowLoaded = () => {
+    if (done || --pending > 0) return;
+    done = true;
+    setTimeout(() => {
+      clearInterval(tick);
+      bar.style.setProperty('--p', '1');
+      setTimeout(() => { el.classList.add('out'); finish(); setTimeout(() => el.remove(), 700); }, 120);
+    }, Math.max(0, min - (performance.now() - start)));
+  };
+  addEventListener('load', () => window.hollowLoaded());
+})();
+</script>
+
+
+<header class="nav" id="siteNav">
+  <div class="navbar">
+    <a class="brand" href="/" aria-label="Hollow home">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+        <path d="M14 2 C9 3 6 8 5.5 13 C5 18 4 22 3 26 L25 26 C24 22 23 18 22.5 13 C22 8 19 3 14 2 Z" fill="#16181A" stroke="#EEF2F6" stroke-width="1.5"/>
+        <path d="M14 8 C10.5 8.3 9 11 9 14 C9 17 11 19.5 14 19.8 C17 19.5 19 17 19 14 C19 11 17.5 8.3 14 8 Z" fill="#020203"/>
+        <circle cx="12" cy="14" r="1.1" fill="#CFE3F5"/><circle cx="16" cy="14" r="1.1" fill="#CFE3F5"/>
+      </svg>
+      <span>hollow</span>
+    </a>
+    <nav class="navlinks" aria-label="Main">
+      <a href="#story">How it works</a>
+      <a href="#game">Try it</a>
+      <a href="/app.html#vault" data-app="#vault">Vault</a>
+      <a href="/app.html#crowd" data-app="#crowd">The crowd</a>
+      <a href="/docs.html">Docs</a>
+      <a href="/docs.html#security">Security</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn" href="/app.html" data-app="">Open app <span class="arr">↗</span></a>
+      <button type="button" class="menu-btn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Menu" hidden>
+    <a href="#story">How it works</a>
+    <a href="#game">Try it</a>
+    <a href="/app.html#vault" data-app="#vault">Vault</a>
+    <a href="/app.html#crowd" data-app="#crowd">The crowd</a>
+    <a href="/docs.html">Docs</a>
+    <a href="/docs.html#security">Security</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="top">
+    <div class="halo" aria-hidden="true"></div>
+    <div class="ghostword" aria-hidden="true">hollow</div>
+    <canvas id="heroCanvas" aria-hidden="true"></canvas>
+    <div class="wrap hero-copy">
+      <div class="hero-main">
+        <span class="mono rise d1" style="color:var(--soft)">Private money · Solana</span>
+        <h1 class="rise d2">Leave no <em>trace.</em></h1>
+        <p class="rise d3">Shield SOL and USDC, then send and hold with nothing pointing back to you.</p>
+        <div class="row rise d4">
+          <a class="btn" href="/app.html" data-app="">Enter Hollow <span class="arr">↗</span></a>
+          <a class="ghost" href="#story">Watch it work <span class="bob">↓</span></a>
+        </div>
+      </div>
+      <div class="hero-side mono rise d4">
+        <div class="ca">
+          <span class="ca-icon" aria-hidden="true"><img src="/favicon.svg" alt=""></span>
+          <span class="ca-name"><strong>$Hollow</strong><small><i></i>Official contract</small></span>
+          <span class="ca-addr">
+            <code id="caAddr" data-ca="56ZvMBiCBZQBhwTBdGwrp53mMnofRWqUKkPoLHDLpump" title="56ZvMBiCBZQBhwTBdGwrp53mMnofRWqUKkPoLHDLpump"><span class="ca-full">56Zv…pump</span><span class="ca-msg" aria-hidden="true">Copied!</span></code>
+            <button class="ca-copy" id="caCopy" type="button" aria-label="Copy contract address">
+              <svg class="cp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+              <svg class="ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+            </button>
+          </span>
+        </div>
+        <span style="display:inline-flex;align-items:center;gap:8px"><span class="pulse"></span><span>Live on Solana</span></span>
+        <span>Move your cursor · click</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="story" id="story" aria-label="How Hollow works">
+    <div class="stage" id="stage">
+      <canvas id="storyCanvas" aria-hidden="true"></canvas>
+      <div class="wrap stage-top">
+        <div class="phases">
+          <div class="phase is-active" data-i="0">
+            <span class="mono">01 · Exposed</span>
+            <h2>Your wallet is glass.</h2>
+            <p>On Solana anyone can watch what you hold and who you pay.</p>
+          </div>
+          <div class="phase" data-i="1">
+            <span class="mono">02 · Shield</span>
+            <h2>Step into the hood.</h2>
+            <p>One signature drops your SOL or USDC into the shared pool. That is the last thing anyone sees.</p>
+          </div>
+          <div class="phase" data-i="2">
+            <span class="mono">03 · Blend in</span>
+            <h2>Inside, you're noise.</h2>
+            <p>Your coins swirl with everyone else's. Nobody can tell which ones are yours. Not even us.</p>
+          </div>
+          <div class="phase" data-i="3">
+            <span class="mono">04 · Withdraw</span>
+            <h2>Come out anywhere.</h2>
+            <p>Withdraw to a fresh address. Nothing ties it back to where you started.</p>
+          </div>
+        </div>
+        <div class="rail" aria-hidden="true">
+          <span class="on">01<i></i></span><span>02<i></i></span><span>03<i></i></span><span>04<i></i></span>
+        </div>
+      </div>
+      <div class="progress" aria-hidden="true">
+        <div class="wrap mono"><span id="modeLabel">Scroll</span><span class="track"><span class="bar" id="bar"></span></span><span>Shield → Blend in → Withdraw</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="game" id="game">
+    <div class="wrap">
+      <div class="game-head slide">
+        <span class="mono">Try to follow it</span>
+        <h2>Watch the coin.</h2>
+        <p id="shellMsg" aria-live="polite">Five hoods. One gets your 1 SOL. Keep your eyes on it.</p>
+        <div class="hud mono" aria-hidden="true"><span>Hoods <b>5</b></span><span>Swaps <b id="swapCount">0</b></span><span>Your odds <b id="oddsText">1 in 5</b></span></div>
+      </div>
+      <div class="table" id="table">
+        <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="hg-cloak" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A3542"/><stop offset=".55" stop-color="#131A22"/><stop offset="1" stop-color="#07090C"/></linearGradient>
+            <radialGradient id="cg-face" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".45" stop-color="#D3E1EE"/><stop offset="1" stop-color="#7F95AB"/></radialGradient>
+            <linearGradient id="cg-rim" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F2F7FC"/><stop offset=".5" stop-color="#93A8BD"/><stop offset="1" stop-color="#4D6074"/></linearGradient>
+            <filter id="hg-glow" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation=".45" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+        </svg>
+        <div class="floor" aria-hidden="true"></div>
+        <div class="spot" id="spot" aria-hidden="true"></div>
+      </div>
+      <div class="game-cta"><button type="button" class="btn" id="shellBtn">Drop it in</button></div>
+    </div>
+  </section>
+
+  <section class="clean" id="clean">
+    <div class="wrap">
+      <h2 class="big"><span>Your money.</span><span class="n">Nobody's</span><span class="a">business.</span></h2>
+      <div class="points slide">
+        <div><span class="mono">Notes stay with you</span><p>Proofs are built on your device. Nothing secret ever touches our servers.</p></div>
+        <div><span class="mono">Your wallet stays hidden</span><p>A relayer submits each withdrawal and pays the fee, so your address never shows up.</p></div>
+        <div><span class="mono">Always an exit</span><p>Your deposit can always be withdrawn. Nobody can freeze it, not even us.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="enter" id="enter">
+    <span class="mono">Step inside</span>
+    <div class="flashbox" id="flashbox">
+      <div class="base" aria-hidden="true">hollow</div>
+      <div class="lit" aria-hidden="true">hollow</div>
+      <span class="sr">Hollow</span>
+    </div>
+    <p>Connect a wallet, unlock your vault, and disappear.</p>
+    <a class="btn" href="/app.html" data-app="">Enter Hollow <span class="arr">↗</span></a>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="sf-glow" aria-hidden="true"></div>
+  <div class="sf-in">
+    <a class="sf-brand" href="/" data-site="/" aria-label="Hollow home">
+      <svg width="40" height="40" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+        <path d="M14 2 C9 3 6 8 5.5 13 C5 18 4 22 3 26 L25 26 C24 22 23 18 22.5 13 C22 8 19 3 14 2 Z" fill="#10151C" stroke="rgba(207,227,245,.55)" stroke-width="1"/>
+        <path d="M14 8 C10.5 8.3 9 11 9 14 C9 17 11 19.5 14 19.8 C17 19.5 19 17 19 14 C19 11 17.5 8.3 14 8 Z" fill="#000"/>
+        <circle cx="12" cy="14" r="1.15" fill="#CFE3F5"/><circle cx="16" cy="14" r="1.15" fill="#CFE3F5"/>
+      </svg>
+      <span>hollow</span>
+    </a>
+    <p class="sf-tag">Private money on Solana.</p>
+    <nav class="sf-links" aria-label="Footer">
+      <a href="/app.html" data-app="">App</a>
+      <a href="/docs.html" data-site="/docs.html">Docs</a>
+      <a href="/docs.html#security" data-site="/docs.html#security">Security</a>
+      <a href="/terms" data-site="/terms">Terms</a>
+      <a href="/privacy" data-site="/privacy">Privacy</a>
+    </nav>
+    <div class="sf-social">
+      <a class="sf-chip" href="https://x.com/usehollowxyz" target="_blank" rel="noopener" aria-label="Hollow on X (@usehollowxyz)">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        <span>@usehollowxyz</span>
+      </a>
+      <a class="sf-chip" href="mailto:contact@usehollow.xyz" aria-label="Email contact@usehollow.xyz">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M4 7l8 6 8-6"/></svg>
+        <span>contact@usehollow.xyz</span>
+      </a>
+    </div>
+    <div class="sf-rule" aria-hidden="true"></div>
+    <p class="sf-legal">Hollow is an independent project, not affiliated with, endorsed by or sponsored by the Solana Foundation or Solana Labs. Use at your own risk.</p>
+    <p class="sf-copy">© 2026 Hollow</p>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const btn = document.getElementById('caCopy');
+  const card = btn.closest('.ca');
+  const addr = document.getElementById('caAddr').dataset.ca;
+  let t;
+  // The whole address chip copies, not just the icon button.
+  btn.closest('.ca-addr').addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(addr); } catch {
+      // Clipboard API refused (no focus or permission): fall back to a hidden textarea.
+      const ta = Object.assign(document.createElement('textarea'), { value: addr });
+      ta.style.cssText = 'position:fixed;opacity:0';
+      document.body.append(ta);
+      ta.select();
+      const ok = document.execCommand('copy');
+      ta.remove();
+      if (!ok) return;
+    }
+    // Re-adding the class restarts the sweep and glow on repeat clicks.
+    card.classList.remove('done');
+    void card.offsetWidth;
+    card.classList.add('done');
+    btn.setAttribute('aria-label', 'Copied');
+    // The hero hood reacts too (see the hero script).
+    document.dispatchEvent(new CustomEvent('hollow:copied', { detail: btn.getBoundingClientRect() }));
+    clearTimeout(t);
+    t = setTimeout(() => { card.classList.remove('done'); btn.setAttribute('aria-label', 'Copy contract address'); }, 1800);
+  });
+})();
+</script>
+<script>
+(() => {
+  const HOOD ='M14 2 C9 3 6 8 5.5 13 C5 18 4 22 3 26 L25 26 C24 22 23 18 22.5 13 C22 8 19 3 14 2 Z';
+  const VOID = 'M14 8 C10.5 8.3 9 11 9 14 C9 17 11 19.5 14 19.8 C17 19.5 19 17 19 14 C19 11 17.5 8.3 14 8 Z';
+  const ACC = [207, 227, 245];
+  const accRGB = 'rgb(' + ACC.join(',') + ')';
+  const accA = (a) => 'rgba(' + ACC.join(',') + ',' + a + ')';
+  const HOT = '#FF8E7A';
+  const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const clamp = (v) => Math.max(0, Math.min(1, v));
+  const ease = (v) => v < 0.5 ? 4 * v * v * v : 1 - Math.pow(-2 * v + 2, 3) / 2;
+  const DPR = () => Math.min(window.devicePixelRatio || 1, 2);
+  const visible = (el) => { const r = el.getBoundingClientRect(); return r.bottom > -50 && r.top < innerHeight + 50; };
+  let t0 = performance.now();
+  document.addEventListener('hollow:ready', () => { t0 = performance.now(); });
+
+  /* ---------------- hero: a hood made of dust ---------------- */
+  const hero = document.getElementById('top');
+  const hcv = document.getElementById('heroCanvas');
+  const hctx = hcv.getContext('2d');
+  const mouse = { x: -9999, y: -9999, lx: 0, ly: 0 };
+  let hw = 0, hh = 0, hH = 0, hcx = 0, hcy = 0, hp = null, flareAt = -1e9, copyAt = -1e9;
+  // Copying the contract address sends a stream of sparks from the card into the hood,
+  // which hops and smiles (^ ^) as they land.
+  const sparks = [];
+
+  function hoodPoints() {
+    const S = 300, k = S / 28;
+    const oc = document.createElement('canvas'); oc.width = S; oc.height = S;
+    const c = oc.getContext('2d');
+    const outer = new Path2D(HOOD), inner = new Path2D(VOID);
+    c.setTransform(k, 0, 0, k, 0, 0);
+    c.fillStyle = '#fff'; c.fill(outer);
+    c.globalCompositeOperation = 'destination-out'; c.fill(inner);
+    const fill = c.getImageData(0, 0, S, S).data;
+    c.globalCompositeOperation = 'source-over';
+    c.setTransform(1, 0, 0, 1, 0, 0); c.clearRect(0, 0, S, S); c.setTransform(k, 0, 0, k, 0, 0);
+    c.lineWidth = 1.8 / k; c.strokeStyle = '#fff'; c.stroke(outer); c.stroke(inner);
+    const rim = c.getImageData(0, 0, S, S).data;
+    const pts = [];
+    for (let y = 0; y < S; y += 3) for (let x = 0; x < S; x += 3)
+      if (fill[(y * S + x) * 4 + 3] > 128) pts.push({ nx: (x + Math.random() * 2.5) / S, ny: (y + Math.random() * 2.5) / S, rim: false });
+    for (let y = 0; y < S; y += 2) for (let x = 0; x < S; x += 2)
+      if (rim[(y * S + x) * 4 + 3] > 90 && Math.random() < 0.75) pts.push({ nx: x / S, ny: y / S, rim: true });
+    return pts;
+  }
+  const PTS = hoodPoints();
+
+  function sizeHero() {
+    const r = hcv.getBoundingClientRect(), d = DPR();
+    hcv.width = Math.max(1, r.width * d); hcv.height = Math.max(1, r.height * d);
+    hctx.setTransform(d, 0, 0, d, 0, 0);
+    hw = r.width; hh = r.height;
+    hcx = hw * 0.5;
+    if (hw < 700) { hH = Math.min(hw * 0.86, 360); hcy = 84 + hH / 2; }
+    else { hH = Math.min(700, hh * 0.74, hw * 0.95); hcy = hh * 0.42; }
+    const old = hp;
+    hp = PTS.map((q, i) => {
+      const prev = old && old[i];
+      return {
+        hx: hcx + (q.nx - 0.5) * hH, hy: hcy + (q.ny - 0.5) * hH,
+        x: prev ? prev.x : Math.random() * hw, y: prev ? prev.y : Math.random() * hh,
+        vx: 0, vy: 0, rim: q.rim, ny: q.ny, ph: Math.random() * 6.283,
+        d: reduce ? 0 : 0.2 + Math.random() * 0.9 + q.ny * 0.7, smoke: q.ny > 0.8
+      };
+    });
+  }
+
+  function drawHero(t) {
+    if (!hp || !visible(hcv)) return;
+    hctx.clearRect(0, 0, hw, hh);
+    hctx.fillStyle = accRGB;
+    const R = 120, R2 = R * R;
+    const since = (performance.now() - flareAt) / 1000;
+    const scatter = since < 0.6 ? 0.04 : since < 1.6 ? 0.04 + 0.96 * ((since - 0.6) / 1.0) : 1;
+    const drag = since < 0.6 ? 0.93 : 0.86;
+    const cs = (performance.now() - copyAt) / 1000;
+    // Two decaying hops starting once the first sparks arrive, plus a brief brightening.
+    const hc = cs - 0.35;
+    const hop = reduce || hc < 0 || hc > 0.9 ? 0 : -Math.abs(Math.sin(Math.PI * hc / 0.45)) * hH * 0.05 * (1 - hc / 0.9);
+    const glow = cs < 0 ? 0 : Math.max(0, 1 - Math.abs(cs - 0.5) / 0.8);
+    for (let i = 0; i < hp.length; i++) {
+      const p = hp[i];
+      const ramp = clamp((t - p.d) / 1.1);
+      let tx = p.hx + Math.sin(t * 0.9 + p.ph) * 1.4, ty = p.hy + hop + Math.cos(t * 0.75 + p.ph) * 1.4;
+      let a = Math.min(1, (p.rim ? 0.95 : 0.5 - p.ny * 0.38) * (1 + glow * 0.8));
+      if (p.smoke) {
+        const s = (t * 0.14 + p.ph / 6.283) % 1;
+        ty += s * 90; tx += Math.sin(t * 0.8 + p.ph) * s * 18; a *= 1 - s;
+      }
+      const k = 0.05 * ramp * scatter;
+      p.vx += (tx - p.x) * k; p.vy += (ty - p.y) * k;
+      const dx = p.x - mouse.x, dy = p.y - mouse.y, d2 = dx * dx + dy * dy;
+      if (d2 < R2) { const dd = Math.sqrt(d2) || 1, f = (1 - dd / R) * 3.2; p.vx += (dx / dd) * f; p.vy += (dy / dd) * f; }
+      p.vx *= drag; p.vy *= drag; p.x += p.vx; p.y += p.vy;
+      hctx.globalAlpha = a * (0.12 + 0.88 * ramp);
+      const s = p.rim ? 1.7 : 1.3;
+      hctx.fillRect(p.x, p.y, s, s);
+    }
+    const k = hH / 28;
+    const show = reduce ? 1 : clamp((t - 1.9) / 0.8);
+    const flare = Math.max(0, 1 - (performance.now() - flareAt) / 900, glow * 0.8);
+    const blink = (t % 5.2) < 0.13 ? 0.1 : 1;
+    const ox = mouse.lx * k * 0.75, oy = mouse.ly * k * 0.55;
+    hctx.globalAlpha = show;
+    hctx.shadowColor = accRGB; hctx.shadowBlur = 28 + flare * 40;
+    const er = k * (0.72 + flare * 0.35);
+    const happy = cs > 0.3 && cs < 1.9;
+    if (happy) { hctx.strokeStyle = accRGB; hctx.lineWidth = k * 0.42; hctx.lineCap = 'round'; }
+    for (const ux of [12, 16]) {
+      const ex = hcx + (ux - 14) * k + ox, ey = hcy + hop + oy;
+      hctx.beginPath();
+      if (happy) { hctx.arc(ex, ey + er * 0.55, er * 1.05, Math.PI * 1.18, Math.PI * 1.82); hctx.stroke(); }
+      else { hctx.ellipse(ex, ey, er, er * blink, 0, 0, 6.2832); hctx.fill(); }
+    }
+    hctx.shadowBlur = 0; hctx.globalAlpha = 1;
+
+    for (let i = sparks.length - 1; i >= 0; i--) {
+      const s = sparks[i];
+      s.age += 1 / 60;
+      if (s.age < 0) continue;
+      const dx = hcx + s.tx * k - s.x, dy = hcy + hop + s.ty * k - s.y, d = Math.hypot(dx, dy) || 1;
+      const pull = Math.min(2.4, 0.25 + s.age * 2.2);
+      s.vx = (s.vx + (dx / d) * pull) * 0.94; s.vy = (s.vy + (dy / d) * pull) * 0.94;
+      s.x += s.vx; s.y += s.vy;
+      if (d < 10 || s.age > 3) { sparks.splice(i, 1); continue; }
+      hctx.globalAlpha = Math.min(1, s.age * 4) * 0.9;
+      hctx.fillRect(s.x, s.y, 2, 2);
+    }
+    hctx.globalAlpha = 1;
+  }
+
+  hero.addEventListener('pointermove', (e) => {
+    const r = hero.getBoundingClientRect();
+    mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
+    mouse.lx = Math.max(-1, Math.min(1, (mouse.x - hcx) / (hw * 0.35)));
+    mouse.ly = Math.max(-1, Math.min(1, (mouse.y - hcy) / (hh * 0.35)));
+  });
+  hero.addEventListener('pointerleave', () => { mouse.x = mouse.y = -9999; mouse.lx = mouse.ly = 0; });
+  hero.addEventListener('click', (e) => {
+    if (e.target.closest('a,button') || !hp) return;
+    const r = hero.getBoundingClientRect();
+    const cx = e.clientX - r.left, cy = e.clientY - r.top;
+    for (const p of hp) {
+      const dx = p.x - cx, dy = p.y - cy, d = Math.sqrt(dx * dx + dy * dy) || 1;
+      const f = (8 + Math.random() * 22) * Math.max(0.3, 1 - d / 900);
+      p.vx += (dx / d) * f; p.vy += (dy / d) * f;
+    }
+    flareAt = performance.now();
+  });
+  document.addEventListener('hollow:copied', (e) => {
+    copyAt = performance.now();
+    if (reduce) return;
+    const r = hero.getBoundingClientRect(), b = e.detail;
+    const x0 = b.left + b.width / 2 - r.left, y0 = b.top + b.height / 2 - r.top;
+    for (let i = 0; i < 48; i++) {
+      const a = Math.random() * 6.2832, v = 2 + Math.random() * 5;
+      // Each spark heads for a random point in the hood's face (hood units, centred on the eyes).
+      sparks.push({ x: x0, y: y0, vx: Math.cos(a) * v, vy: Math.sin(a) * v - 2, age: -i * 0.006, tx: (Math.random() - 0.5) * 8, ty: (Math.random() - 0.5) * 9 });
+    }
+  });
+
+  /* ---------------- story: pinned, scroll-scrubbed ---------------- */
+  const story = document.getElementById('story');
+  const stage = document.getElementById('stage');
+  const scv = document.getElementById('storyCanvas');
+  const sctx = scv.getContext('2d');
+  const bar = document.getElementById('bar');
+  const modeLabel = document.getElementById('modeLabel');
+  const phaseEls = [...document.querySelectorAll('.phase')];
+  const railEls = [...document.querySelectorAll('.rail span')];
+  const outer2d = new Path2D(HOOD), void2d = new Path2D(VOID);
+  let sw = 0, sh = 0, ps = 0, phase = 0, scrollMode = null;
+  const you = [], others = [];
+  for (let i = 0; i < 30 * 18; i++) you.push({ u: (i % 30) / 29 - 0.5, v: Math.floor(i / 30) / 17 - 0.5, ai: Math.random() * 6.283, ri: Math.sqrt(Math.random()) * 0.85, di: Math.random(), ph: Math.random() * 6.283 });
+  for (let j = 0; j < 900; j++) others.push({ ai: Math.random() * 6.283, ri: Math.sqrt(Math.random()) * 0.95, sp: 0.4 + Math.random() * 0.9 });
+
+  function sizeStory() {
+    const r = scv.getBoundingClientRect(), d = DPR();
+    scv.width = Math.max(1, r.width * d); scv.height = Math.max(1, r.height * d);
+    sctx.setTransform(d, 0, 0, d, 0, 0);
+    sw = r.width; sh = r.height;
+  }
+  function setPhase(n) {
+    if (n === phase) return;
+    phase = n;
+    phaseEls.forEach((el, i) => { el.classList.toggle('is-active', i === n); el.classList.toggle('is-past', i < n); el.setAttribute('aria-hidden', i === n ? 'false' : 'true'); });
+    railEls.forEach((el, i) => { el.classList.toggle('on', i === n); el.classList.toggle('done', i < n); });
+  }
+  phaseEls.forEach((el, i) => el.setAttribute('aria-hidden', i === 0 ? 'false' : 'true'));
+
+  function rrect(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y); ctx.lineTo(x + w - r, y); ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+    ctx.lineTo(x + w, y + h - r); ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    ctx.lineTo(x + r, y + h); ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+    ctx.lineTo(x, y + r); ctx.quadraticCurveTo(x, y, x + r, y); ctx.closePath();
+  }
+  const bez = (a, c, e, s) => { const u = 1 - s; return { x: u * u * a.x + 2 * u * s * c.x + s * s * e.x, y: u * u * a.y + 2 * u * s * c.y + s * s * e.y }; };
+
+  function drawStory(t) {
+    if (!visible(scv)) return;
+    const se = document.scrollingElement || document.documentElement;
+    const sm = se.scrollHeight - innerHeight > 600;
+    if (sm !== scrollMode) { scrollMode = sm; modeLabel.textContent = sm ? 'Scroll' : 'Playing'; }
+    let target;
+    if (sm) {
+      const rr = story.getBoundingClientRect();
+      target = clamp(-rr.top / Math.max(1, rr.height - stage.offsetHeight));
+    } else {
+      const c = (t * 0.05) % 1.25;
+      target = Math.min(1, c);
+      if (c < 0.02) ps = 0;
+    }
+    ps += (target - ps) * (reduce ? 1 : 0.08);
+    const p = ps;
+    bar.style.transform = 'scaleX(' + p.toFixed(4) + ')';
+    setPhase(p < 0.22 ? 0 : p < 0.5 ? 1 : p < 0.76 ? 2 : 3);
+
+    const w = sw, h = sh, ctx = sctx;
+    const narrow = w < 760;
+    const sceneY = narrow ? h * 0.64 : h * 0.6;
+    const rad = Math.max(30, Math.min(80, w * 0.07, h * 0.1));
+    const cw = Math.max(80, Math.min(230, w * 0.17)), ch = cw * 0.62;
+    const A = { x: Math.max(cw / 2 + 16, w * 0.15), y: sceneY };
+    const B = { x: w - A.x, y: sceneY };
+    const C = { x: w / 2, y: sceneY };
+    const f1 = clamp((p - 0.2) / 0.26), f2 = clamp((p - 0.74) / 0.22);
+    const k = rad / 5;
+    ctx.clearRect(0, 0, w, h);
+
+    const gr = ctx.createRadialGradient(C.x, C.y, 0, C.x, C.y, rad * 4.2);
+    gr.addColorStop(0, accA(0.16 + 0.1 * Math.sin(t * 1.2)));
+    gr.addColorStop(1, accA(0));
+    ctx.fillStyle = gr; ctx.beginPath(); ctx.arc(C.x, C.y, rad * 4.2, 0, 6.2832); ctx.fill();
+
+    ctx.save();
+    ctx.translate(C.x - 14 * k, C.y - 14 * k); ctx.scale(k, k);
+    ctx.fillStyle = '#0B0E13'; ctx.fill(outer2d);
+    ctx.globalAlpha = 0.55; ctx.strokeStyle = accRGB; ctx.lineWidth = 1.4 / k; ctx.stroke(outer2d);
+    ctx.globalAlpha = 1; ctx.fillStyle = '#000'; ctx.fill(void2d);
+    ctx.restore();
+
+    const wA = 1 - clamp((p - 0.12) / 0.14);
+    if (wA > 0.01) {
+      const obs = [[-0.9, -1.7], [0.7, -1.9], [1.6, -1.1], [-1.5, 1.0], [1.3, 1.4], [-0.1, 2.0]];
+      ctx.save();
+      ctx.setLineDash([3, 6]); ctx.lineDashOffset = -t * 24;
+      ctx.strokeStyle = HOT; ctx.lineWidth = 1;
+      obs.forEach(([ox, oy], i) => {
+        const x = Math.max(10, Math.min(w - 10, A.x + ox * cw * 0.75)), y = Math.max(10, Math.min(h - 10, A.y + oy * ch * 1.1));
+        ctx.globalAlpha = wA * 0.55;
+        ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(A.x, A.y); ctx.stroke();
+        ctx.globalAlpha = wA * (0.5 + 0.5 * Math.sin(t * 3 + i));
+        ctx.fillStyle = HOT; ctx.beginPath(); ctx.arc(x, y, 3.5, 0, 6.2832); ctx.fill();
+      });
+      ctx.restore();
+    }
+
+    ctx.font = '500 11px "Geist Mono", ui-monospace, monospace'; ctx.textAlign = 'center';
+    const aA = 1 - f1;
+    if (aA > 0.01) {
+      ctx.globalAlpha = aA * 0.8; ctx.strokeStyle = HOT; ctx.lineWidth = 1;
+      rrect(ctx, A.x - cw / 2 - 8, A.y - ch / 2 - 8, cw + 16, ch + 16, 12); ctx.stroke();
+      ctx.globalAlpha = aA; ctx.fillStyle = '#EEF2F6';
+      ctx.fillText('7xKq…c9fE', A.x, A.y + ch / 2 + 30);
+      ctx.fillStyle = HOT; ctx.fillText(narrow ? 'VISIBLE' : '142.0 SOL · VISIBLE TO ANYONE', A.x, A.y + ch / 2 + 48);
+    }
+    if (f2 > 0.01) {
+      ctx.globalAlpha = f2 * 0.8; ctx.strokeStyle = accRGB; ctx.lineWidth = 1;
+      rrect(ctx, B.x - cw / 2 - 8, B.y - ch / 2 - 8, cw + 16, ch + 16, 12); ctx.stroke();
+      ctx.globalAlpha = f2; ctx.fillStyle = '#EEF2F6';
+      ctx.fillText('9mRv…04aB', B.x, B.y + ch / 2 + 30);
+      ctx.fillStyle = accRGB; ctx.fillText(narrow ? 'FRESH' : 'FRESH ADDRESS · NO HISTORY', B.x, B.y + ch / 2 + 48);
+      ctx.save();
+      ctx.globalAlpha = f2 * 0.5; ctx.setLineDash([4, 7]); ctx.strokeStyle = '#9AA4AF';
+      const y0 = A.y + ch / 2 + 62, cyy = sceneY + h * 0.3;
+      ctx.beginPath(); ctx.moveTo(A.x, y0); ctx.quadraticCurveTo(w / 2, cyy, B.x, y0); ctx.stroke();
+      ctx.restore();
+      const my = 0.5 * y0 + 0.5 * cyy;
+      ctx.globalAlpha = f2; ctx.strokeStyle = HOT; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(w / 2 - 8, my - 8); ctx.lineTo(w / 2 + 8, my + 8); ctx.moveTo(w / 2 + 8, my - 8); ctx.lineTo(w / 2 - 8, my + 8); ctx.stroke();
+      ctx.fillStyle = '#9AA4AF'; ctx.fillText('NO LINK', w / 2, my + 28);
+    }
+
+    const oA = clamp((p - 0.3) / 0.2);
+    if (oA > 0.01) {
+      ctx.fillStyle = accRGB; ctx.globalAlpha = oA * 0.35;
+      for (const o of others) {
+        const an = o.ai + t * 0.5 * o.sp;
+        ctx.fillRect(C.x + Math.cos(an) * o.ri * rad, C.y + Math.sin(an) * o.ri * rad * 1.15, 1.4, 1.4);
+      }
+    }
+
+    const ctrl1 = { x: (A.x + C.x) / 2, y: sceneY - h * 0.28 };
+    const ctrl2 = { x: (C.x + B.x) / 2, y: sceneY - h * 0.28 };
+    for (let pass = 0; pass < 2; pass++) {
+      ctx.fillStyle = pass === 0 ? HOT : accRGB;
+      for (const q of you) {
+        const ti = ease(clamp(f1 * 1.6 - q.di * 0.6));
+        const to = ease(clamp(f2 * 1.6 - q.di * 0.6));
+        const exposed = ti < 0.55 && to === 0;
+        if ((pass === 0) !== exposed) continue;
+        const an = q.ai + t * 0.6 * (1.2 - q.ri);
+        const hpnt = { x: C.x + Math.cos(an) * q.ri * rad, y: C.y + Math.sin(an) * q.ri * rad * 1.15 };
+        let pt;
+        if (to > 0) pt = bez(hpnt, ctrl2, { x: B.x + q.u * cw, y: B.y + q.v * ch }, to);
+        else pt = bez({ x: A.x + q.u * cw + Math.sin(t * 1.3 + q.ph) * 0.8, y: A.y + q.v * ch + Math.cos(t * 1.1 + q.ph) * 0.8 }, ctrl1, hpnt, ti);
+        ctx.globalAlpha = exposed ? 0.85 : 0.95;
+        ctx.fillRect(pt.x, pt.y, 1.8, 1.8);
+      }
+    }
+
+    const look = p < 0.3 ? -1 : p > 0.74 ? 1 : Math.sin(t * 0.7) * 0.4;
+    const blink = (t % 4.6) < 0.12 ? 0.1 : 1;
+    ctx.globalAlpha = 1; ctx.fillStyle = accRGB; ctx.shadowColor = accRGB; ctx.shadowBlur = 22;
+    for (const ux of [12, 16]) {
+      ctx.beginPath();
+      ctx.ellipse(C.x + (ux - 14) * k + look * k * 0.7, C.y, k * 0.75, k * 0.75 * blink, 0, 0, 6.2832);
+      ctx.fill();
+    }
+    ctx.shadowBlur = 0; ctx.globalAlpha = 1;
+  }
+
+  /* ---------------- game: follow the coin ---------------- */
+  const table = document.getElementById('table');
+  const msg = document.getElementById('shellMsg');
+  const shellBtn = document.getElementById('shellBtn');
+  const COIN = 2;
+  let pos = [0, 1, 2, 3, 4], shell = 'idle', picked = -1, timers = [];
+  const spot = document.getElementById('spot');
+  const swapCount = document.getElementById('swapCount');
+  const oddsText = document.getElementById('oddsText');
+  let swaps = 0;
+  const hoodSVG = () => '<svg viewBox="0 0 28 28" preserveAspectRatio="none" aria-hidden="true">' +
+    '<path class="cloak" d="' + HOOD + '" fill="url(#hg-cloak)" stroke="' + accA(0.45) + '" stroke-width="0.3"/>' +
+    '<path d="M14 2.6 C10 3.6 7.2 7.6 6.4 12" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="0.35" stroke-linecap="round"/>' +
+    '<path d="' + VOID + '" fill="#000"/>' +
+    '<circle class="eye" cx="12" cy="14" r="0.8" fill="' + accRGB + '" filter="url(#hg-glow)"/><circle class="eye" cx="16" cy="14" r="0.8" fill="' + accRGB + '" filter="url(#hg-glow)"/></svg>';
+  const coinSVG = '<svg viewBox="0 0 56 56" aria-hidden="true">' +
+    '<circle cx="28" cy="28" r="27.5" fill="url(#cg-rim)"/>' +
+    '<circle cx="28" cy="28" r="22.5" fill="url(#cg-face)" stroke="rgba(255,255,255,.7)" stroke-width=".8"/>' +
+    '<circle cx="28" cy="28" r="20" fill="none" stroke="rgba(77,96,116,.35)" stroke-width=".6" stroke-dasharray="1 2"/>' +
+    '<path d="M21.5 18.5 H38.5 L34.5 22.5 H17.5 Z" fill="#3B4B5E"/>' +
+    '<path d="M17.5 26 H34.5 L38.5 30 H21.5 Z" fill="#2A3746"/>' +
+    '<path d="M21.5 33.5 H38.5 L34.5 37.5 H17.5 Z" fill="#3B4B5E"/></svg>';
+  const hoods = [0, 1, 2, 3, 4].map((id) => {
+    const el = document.createElement('div');
+    el.className = 'hood';
+    el.innerHTML = '<span class="shadow" aria-hidden="true"></span><span class="coin" aria-hidden="true"><span class="spin">' + coinSVG + '</span><span class="coin-label">1 SOL</span></span><button type="button" disabled>' + hoodSVG() + '</button>';
+    table.appendChild(el);
+    const btn = el.querySelector('button');
+    btn.addEventListener('click', () => { if (shell === 'pick') { picked = id; shell = 'reveal'; renderShell(); } });
+    return { el, btn, coin: el.querySelector('.coin'), eyes: el.querySelectorAll('.eye') };
+  });
+  const MSGS = {
+    idle: 'Five hoods. One gets your 1 SOL. Keep your eyes on it.',
+    drop: 'In it goes…',
+    shuffle: 'Keep watching…',
+    pick: 'Which hood has your 1 SOL? Pick one.',
+    reveal: "Every hood has 1 SOL. Every exit looks the same, and that's the point."
+  };
+  function renderShell() {
+    hoods.forEach((h, id) => {
+      const isCoin = id === COIN;
+      let coinOp = 0, coinY = 0, hoodY = 0;
+      if (shell === 'idle') { coinOp = isCoin ? 1 : 0; coinY = isCoin ? -205 : 0; }
+      else if (shell === 'reveal') { coinOp = 1; hoodY = -120; }
+      else if (shell === 'drop') { coinOp = isCoin ? 1 : 0; }
+      else { coinOp = 0; }
+      h.el.style.left = pos[id] * 20 + '%';
+      h.el.classList.toggle('lifted', shell === 'reveal');
+      h.el.classList.toggle('revealed', shell === 'reveal');
+      h.el.classList.toggle('picked', picked === id);
+      h.coin.style.opacity = coinOp;
+      h.coin.style.transform = 'translateY(' + coinY + 'px)';
+      h.btn.style.transform = hoodY ? 'translateY(' + hoodY + 'px)' : '';
+      h.btn.disabled = shell !== 'pick';
+      h.btn.setAttribute('aria-label', 'Hood ' + (pos[id] + 1));
+      h.eyes.forEach((e) => { e.style.opacity = (shell === 'shuffle' || shell === 'drop') ? 0.12 : 1; });
+    });
+    // The spotlight follows the coin until the shuffle starts, then the lights go down.
+    spot.style.left = (pos[COIN] * 20 + 10) + '%';
+    spot.classList.toggle('off', shell === 'shuffle' || shell === 'pick');
+    spot.classList.toggle('flood', shell === 'reveal');
+    swapCount.textContent = swaps;
+    oddsText.textContent = shell === 'reveal' ? '5 in 5' : '1 in 5';
+    msg.textContent = MSGS[shell];
+    msg.classList.toggle('reveal', shell === 'reveal');
+    shellBtn.hidden = !(shell === 'idle' || shell === 'reveal');
+    shellBtn.textContent = shell === 'reveal' ? 'Play again' : 'Drop it in';
+  }
+  const later = (ms, fn) => timers.push(setTimeout(fn, ms));
+  const hop = (h) => { h.el.classList.remove('hop'); void h.el.offsetWidth; h.el.classList.add('hop'); };
+  shellBtn.addEventListener('click', () => {
+    if (shell === 'drop' || shell === 'shuffle') return;
+    timers.forEach(clearTimeout); timers = [];
+    picked = -1; swaps = 0; shell = 'drop'; renderShell();
+    const step = reduce ? 420 : 300, total = 14;
+    later(900, () => { shell = 'shuffle'; renderShell(); });
+    for (let i = 0; i < total; i++) later(1150 + i * step, () => {
+      const a = Math.random() < 0.55 ? COIN : Math.floor(Math.random() * 5);
+      let b = Math.floor(Math.random() * 5);
+      if (b === a) b = (a + 1 + Math.floor(Math.random() * 4)) % 5;
+      [pos[a], pos[b]] = [pos[b], pos[a]];
+      swaps++;
+      if (!reduce) { hop(hoods[a]); hop(hoods[b]); }
+      renderShell();
+    });
+    later(1150 + total * step + 350, () => { shell = 'pick'; renderShell(); hoods[0].btn.focus({ preventScroll: true }); });
+  });
+  renderShell();
+
+  /* ---------------- statement: words sharpen as they scroll into view ---------------- */
+  const words = [...document.querySelectorAll('.big span')];
+  const sharpen = () => {
+    const vh = innerHeight;
+    words.forEach((w, i) => {
+      const r = w.getBoundingClientRect();
+      const p = Math.max(0, Math.min(1, (vh * 0.95 - r.top) / (vh * 0.38) - i * 0.12));
+      const t = reduce ? 1 : p;
+      w.style.filter = t >= 1 ? 'none' : 'blur(' + ((1 - t) * 18).toFixed(1) + 'px)';
+      w.style.opacity = (0.12 + 0.88 * t).toFixed(3);
+      w.style.transform = t >= 1 ? 'none' : 'translateY(' + ((1 - t) * 34).toFixed(1) + 'px)';
+    });
+  };
+  addEventListener('scroll', () => requestAnimationFrame(sharpen), { passive: true });
+  addEventListener('resize', sharpen);
+  sharpen();
+
+  /* ---------------- enter: flashlight wordmark ---------------- */
+  const flash = document.getElementById('flashbox');
+  flash.parentElement.addEventListener('pointermove', (e) => {
+    const r = flash.getBoundingClientRect();
+    flash.style.setProperty('--cx', (e.clientX - r.left) + 'px');
+    flash.style.setProperty('--cy', (e.clientY - r.top) + 'px');
+  });
+  flash.parentElement.addEventListener('pointerleave', () => { flash.style.setProperty('--cx', '-999px'); flash.style.setProperty('--cy', '-999px'); });
+
+  /* ---------------- loop ---------------- */
+  sizeHero(); sizeStory();
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(sizeHero).observe(hcv);
+    new ResizeObserver(sizeStory).observe(scv);
+  } else addEventListener('resize', () => { sizeHero(); sizeStory(); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { sizeHero(); sizeStory(); });
+  const loop = () => {
+    const t = (performance.now() - t0) / 1000;
+    drawHero(t); drawStory(t);
+    requestAnimationFrame(loop);
+  };
+  requestAnimationFrame(loop);
+})();
+</script>
+
+</body>
+</html>

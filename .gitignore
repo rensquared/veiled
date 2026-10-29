@@ -1,0 +1,14 @@
+# Antigravity agent skills & workspace rules
+.agents/
+
+# Scratch & temporary workspace files
+scratch/
+*.log
+*.tmp
+__pycache__/
+
+# OS & Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

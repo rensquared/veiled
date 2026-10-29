@@ -1,0 +1,1353 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>V E I L E D · Zero-Knowledge State Shield on Robinhood Chain</title>
+<meta name="description" content="Shield ETH and USDC into cryptographic zero-knowledge pools on Robinhood Chain. Fair launching via Pons Family Launchpad. Unlink your transaction lineage with mathematical finality.">
+<link rel="icon" href="./favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#030405">
+<link rel="canonical" href="https://veiled.space/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="V E I L E D">
+<meta property="og:title" content="V E I L E D · Zero-Knowledge State Shield on Robinhood Chain">
+<meta property="og:description" content="Shield ETH and USDC into cryptographic zero-knowledge pools on Robinhood Chain. Fair launching via Pons Family Launchpad. Unlink your transaction lineage with mathematical finality.">
+<meta property="og:url" content="https://veiled.space/">
+<meta property="og:image" content="https://veiled.space/share.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Veiled: Silence on the ledger. Leave no shadow. Private ETH and USDC on Robinhood Chain.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@veiledprivacy">
+<meta name="twitter:title" content="V E I L E D · Zero-Knowledge State Shield on Robinhood Chain">
+<meta name="twitter:description" content="Shield ETH and USDC into cryptographic zero-knowledge pools on Robinhood Chain. Fair launching via Pons Family Launchpad. Unlink your transaction lineage with mathematical finality.">
+<meta name="twitter:image" content="https://veiled.space/share.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./assets/instrument-serif-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./assets/instrument-serif-italic.woff2') format('woff2');
+}
+
+/* Layout: one cinematic scene per section — dust hood, pinned scroll story, shell game, statement, flashlight wordmark. */
+:root{
+  --bg:#030405;
+  --ink:#F8FAFC;
+  --soft:#94A3B8;
+  --dim:#6F7983;
+  --line:rgba(255,255,255,.08);
+  --accent:#A5B4FC;
+  --hot:#FB7185;
+  --warn:#E9C27A;
+  --display:'Syne','Arial Black',system-ui,sans-serif;
+  --headline:'Instrument Serif',Baskerville,Georgia,'Times New Roman',serif;
+  --body:'Geist',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'Geist Mono',ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:var(--ink)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:8px}
+h1,h2{text-wrap:balance}
+.wrap{width:100%;max-width:1280px;margin:0 auto;padding-inline:24px}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:54px;padding:0 28px;border-radius:999px;border:0;background:var(--ink);color:var(--bg);text-decoration:none;font:600 16px var(--body);cursor:pointer;transition:transform .3s cubic-bezier(.2,.7,.1,1),box-shadow .3s}
+.btn:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 0 0 6px rgba(207,227,245,.08),0 18px 50px -10px rgba(207,227,245,.5)}
+.btn .arr{display:inline-block;transition:transform .3s}
+.btn:hover .arr{transform:translate(3px,-3px)}
+.ghost{display:inline-flex;align-items:center;gap:10px;min-height:54px;padding:0 26px;border-radius:999px;border:1px solid rgba(255,255,255,.16);color:var(--ink);text-decoration:none;font-size:16px;transition:background .25s,border-color .25s}
+.ghost:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.3)}
+
+
+
+/* hero */
+.hero{position:relative;height:100vh;height:100svh;min-height:640px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;cursor:crosshair}
+.halo{position:absolute;left:50%;top:42%;width:980px;height:980px;max-width:none;border-radius:50%;background:radial-gradient(circle,rgba(207,227,245,.2) 0%,rgba(207,227,245,.07) 28%,transparent 62%);transform:translate(-50%,-50%);animation:breathe 6s ease-in-out infinite;pointer-events:none}
+@media (min-width:960px){.halo{left:72%;top:48%;width:1150px;height:1150px}}
+@keyframes breathe{0%,100%{opacity:.75;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.06)}}
+.ghostword{position:absolute;left:0;right:0;top:25%;text-align:center;font:400 clamp(44px,12.5vw,168px)/1 var(--headline);letter-spacing:.22em;padding-left:.22em;color:rgba(255,255,255,.032);pointer-events:none;user-select:none;white-space:nowrap;animation:wm 2.4s cubic-bezier(.16,1,.3,1) both}
+@keyframes wm{from{opacity:0;letter-spacing:.38em;transform:scale(.97)}to{opacity:1;letter-spacing:.22em;transform:scale(1)}}
+.brand span,.sf-brand span{font-family:var(--headline)!important;font-size:20px!important;font-weight:400!important;letter-spacing:.28em!important;text-transform:uppercase!important;color:var(--ink)!important;padding-left:.28em;display:inline-block;line-height:1}
+.loader-word{font:400 24px var(--headline)!important;letter-spacing:.32em!important;text-transform:uppercase!important;color:var(--ink)!important;padding-left:.32em}
+.hero canvas,.stage canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero-copy{position:relative;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:32px;padding-block:0 56px;pointer-events:none}
+.hero-copy > *{pointer-events:auto}
+.hero-main{flex:0 1 580px;max-width:580px;min-width:0;display:flex;flex-direction:column;gap:22px}
+.hero h1{margin:0;font:400 clamp(68px,7.8vw,128px)/1.02 var(--headline);letter-spacing:-.02em}
+.hero h1 em,.phase h2 em{font-style:italic;font-weight:400;color:var(--accent)}
+.hero p{margin:0;max-width:40ch;font-size:18px;line-height:1.55;color:var(--soft)}
+.row{display:flex;flex-wrap:wrap;gap:12px}
+.hero-side{display:flex;flex-direction:column;align-items:flex-end;gap:10px;color:var(--dim);font-size:11px}
+.pulse{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.ca{display:flex;align-items:center;gap:14px;padding:10px 10px 10px 12px;margin-bottom:10px;border-radius:20px;border:1px solid rgba(207,227,245,.16);background:linear-gradient(180deg,rgba(207,227,245,.07),rgba(207,227,245,.02));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 18px 50px -24px rgba(207,227,245,.35);text-transform:none;letter-spacing:0}
+.ca-icon{flex:none;width:44px;height:44px;border-radius:50%;background:radial-gradient(circle at 50% 35%,rgba(207,227,245,.22),rgba(207,227,245,.04));box-shadow:inset 0 0 0 1px rgba(207,227,245,.22);display:grid;place-items:center}
+.ca-icon img{width:30px;height:30px;border-radius:7px}
+.ca-name{display:flex;flex-direction:column;gap:4px;margin-right:6px;min-width:0}
+.ca-name strong{font:700 17px var(--body);color:var(--ink);letter-spacing:-.01em}
+.ca-name small{display:inline-flex;white-space:nowrap;align-items:center;gap:7px;font:500 10px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.ca-name small i{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+.ca-addr{display:flex;margin-left:auto;flex:none;align-items:center;min-height:44px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(3,4,5,.55);cursor:pointer;transition:border-color .2s,background .2s}
+.ca-addr:hover{border-color:rgba(207,227,245,.3);background:rgba(207,227,245,.05)}
+.ca-addr code{padding:0 14px;white-space:nowrap;font:500 13px var(--mono);color:var(--ink)}
+.ca-copy{display:grid;place-items:center;width:42px;align-self:stretch;border:0;border-left:1px solid rgba(255,255,255,.12);border-radius:0 12px 12px 0;background:none;color:var(--soft);cursor:pointer;transition:color .2s,background .2s}
+.ca-copy:hover{color:var(--ink);background:rgba(255,255,255,.05)}
+.ca-copy svg{width:15px;height:15px}
+.ca-copy .ok,.ca.done .ca-copy .cp{display:none}
+.ca.done .ca-copy .ok{display:block;color:var(--accent);animation:caPop .5s cubic-bezier(.3,1.7,.5,1)}
+@keyframes caPop{from{opacity:0;transform:scale(.2) rotate(-25deg)}}
+.ca-addr code{display:grid;justify-items:center;overflow:hidden}
+.ca-addr code > span{grid-area:1/1;transition:opacity .25s,transform .35s cubic-bezier(.2,.7,.1,1)}
+.ca-msg{opacity:0;transform:translateY(110%);color:var(--accent)}
+.ca.done .ca-full{opacity:0;transform:translateY(-110%)}
+.ca.done .ca-msg{opacity:1;transform:none}
+.ca{position:relative;overflow:hidden}
+.ca::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 35%,rgba(207,227,245,.24) 50%,transparent 65%);transform:translateX(-110%);pointer-events:none}
+.ca.done::after{animation:caSweep .9s cubic-bezier(.3,.6,.2,1)}
+.ca.done{animation:caGlow 1.4s ease-out}
+@keyframes caSweep{to{transform:translateX(110%)}}
+@keyframes caGlow{from{border-color:rgba(207,227,245,.75);box-shadow:0 0 0 4px rgba(207,227,245,.14),0 18px 60px -10px rgba(207,227,245,.7)}}
+@media (prefers-reduced-motion:reduce){.ca.done,.ca.done::after,.ca.done .ca-copy .ok{animation:none}}
+@media (max-width:400px){.ca{gap:8px;padding:8px 8px 8px 10px}.ca-icon{width:36px;height:36px}.ca-icon img{width:24px;height:24px}.ca-name{margin-right:0}.ca-name strong{font-size:15px}.ca-name small{font-size:9px;letter-spacing:.08em;gap:6px}.ca-addr{min-height:40px}.ca-addr code{padding:0 10px;font-size:12px}.ca-copy{width:36px}}
+.rise{animation:rise .9s cubic-bezier(.2,.7,.1,1) both}
+.rise.d1{animation-delay:.1s}.rise.d2{animation-delay:.2s}.rise.d3{animation-delay:.3s}.rise.d4{animation-delay:.4s}
+@keyframes rise{from{opacity:0;transform:translateY(40px);filter:blur(10px)}to{opacity:1;transform:none;filter:none}}
+.bob{display:inline-block;animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+/* story */
+.story{position:relative;height:320vh;min-height:2400px}
+.stage{position:sticky;top:env(safe-area-inset-top,0px);height:100vh;min-height:620px;max-height:980px;overflow:hidden}
+.stage-top{position:relative;display:flex;justify-content:space-between;gap:24px;padding-block:96px 0}
+.phases{position:relative;flex:1 1 auto;min-width:0;max-width:620px;height:260px}
+.phase{position:absolute;inset:0;display:flex;flex-direction:column;gap:16px;opacity:0;transform:translateY(30px);filter:blur(8px);transition:opacity .7s ease,transform .9s cubic-bezier(.2,.7,.1,1),filter .7s ease}
+.phase.is-past{transform:translateY(-30px)}
+.phase.is-active{opacity:1;transform:none;filter:none}
+.phase .mono{color:var(--accent)}
+.phase[data-i="0"] .mono{color:var(--hot)}
+.phase h2{margin:0;font:400 clamp(44px,5.4vw,78px)/1.04 var(--headline);letter-spacing:-.02em}
+.phase p{margin:0;max-width:40ch;font-size:17px;line-height:1.55;color:var(--soft)}
+.rail{flex:none;display:flex;flex-direction:column;gap:14px;padding-top:6px}
+.rail span{display:flex;align-items:center;justify-content:flex-end;gap:10px;font:500 11px var(--mono);letter-spacing:.12em;color:#4E5762;transition:color .4s}
+.rail i{display:block;width:18px;height:2px;border-radius:2px;background:rgba(255,255,255,.14);transition:width .5s cubic-bezier(.2,.7,.1,1),background .4s}
+.rail span.on{color:var(--ink)}
+.rail span.on i{width:48px}
+.rail span.done i,.rail span.on i{background:var(--accent)}
+.progress{position:absolute;left:0;right:0;bottom:36px}
+.progress .wrap{display:flex;align-items:center;gap:16px;color:var(--dim);font-size:11px}
+.progress .track{flex:1 1 auto;height:1px;background:var(--line);overflow:hidden}
+.progress .bar{display:block;height:100%;background:var(--accent);transform-origin:left;transform:scaleX(0)}
+@media (max-width:640px){.rail{display:none}.stage-top{padding-block:84px 0}.hero-side{align-items:flex-start}}
+
+/* game */
+.game{position:relative;padding-block:140px 150px;border-top:1px solid rgba(255,255,255,.05);overflow:hidden}
+.game::before{content:"";position:absolute;left:50%;top:38%;width:1100px;height:700px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(207,227,245,.07),transparent);pointer-events:none}
+.game-head{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px}
+.game-head .mono{color:var(--accent)}
+.game h2,.enter h2{margin:0;font:400 clamp(48px,6.2vw,92px)/1.03 var(--headline);letter-spacing:-.02em}
+.game-head p{margin:0;min-height:56px;max-width:46ch;font-size:18px;line-height:1.55;color:var(--soft);transition:color .3s}
+.game-head p.reveal{color:var(--ink)}
+.hud{position:relative;display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:6px}
+.hud span{display:inline-flex;align-items:center;gap:10px;padding:8px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02);color:var(--dim);font-size:10px}
+.hud b{font:600 13px var(--mono);letter-spacing:0;color:var(--ink);font-variant-numeric:tabular-nums}
+.table{position:relative;max-width:920px;height:360px;margin:34px auto 0}
+.floor{position:absolute;left:-4%;right:-4%;bottom:-40px;height:150px;perspective:600px;pointer-events:none}
+.floor::before{content:"";position:absolute;inset:0;transform:rotateX(72deg);transform-origin:50% 100%;
+  background-image:linear-gradient(rgba(207,227,245,.10) 1px,transparent 1px),linear-gradient(90deg,rgba(207,227,245,.10) 1px,transparent 1px);background-size:46px 46px;
+  -webkit-mask-image:radial-gradient(ellipse 60% 90% at 50% 100%,#000 30%,transparent 75%);mask-image:radial-gradient(ellipse 60% 90% at 50% 100%,#000 30%,transparent 75%)}
+.floor::after{content:"";position:absolute;left:10%;right:10%;bottom:28px;height:70px;border-radius:50%;background:radial-gradient(closest-side,rgba(207,227,245,.16),transparent)}
+.spot{position:absolute;top:-6px;bottom:30px;width:240px;margin-left:-120px;pointer-events:none;opacity:1;-webkit-mask-image:linear-gradient(180deg,transparent,#000 22%);mask-image:linear-gradient(180deg,transparent,#000 22%);
+  background:linear-gradient(180deg,rgba(207,227,245,.22),rgba(207,227,245,.05) 70%,transparent);clip-path:polygon(42% 0,58% 0,100% 100%,0 100%);
+  filter:blur(6px);transition:left .5s cubic-bezier(.2,.7,.1,1),opacity .6s ease,width .6s ease,margin .6s ease}
+.spot.off{opacity:0}
+.spot.flood{left:50%!important;width:100%;margin-left:-50%;opacity:.7}
+.hood{position:absolute;bottom:24px;width:20%;height:290px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;transition:left .45s cubic-bezier(.2,.8,.2,1);z-index:2}
+.hood.hop button{animation:hop .32s ease}
+@keyframes hop{50%{transform:translateY(-16px) scale(1.02)}}
+.hood .plinth{position:absolute;bottom:0;width:min(104px,72%);height:38px;background:linear-gradient(180deg,#2D3748 0%,#1A202C 40%,#0F172A 100%);border:1px solid rgba(255,255,255,.14);border-radius:4px;box-shadow:0 4px 16px rgba(0,0,0,.9),inset 0 1px 2px rgba(255,255,255,.2);z-index:1;display:flex;flex-direction:column;align-items:center}
+.hood .plinth::before{content:"";position:absolute;top:-5px;width:86%;height:6px;background:linear-gradient(180deg,#4A5568 0%,#2D3748 100%);border:1px solid rgba(255,255,255,.2);border-bottom:none;border-radius:3px 3px 0 0}
+.hood .plinth::after{content:"";position:absolute;bottom:4px;width:60%;height:1px;background:rgba(199,210,254,.3)}
+.hood .shadow{position:absolute;bottom:-6px;left:50%;width:110px;height:18px;margin-left:-55px;border-radius:50%;background:radial-gradient(ellipse,rgba(0,0,0,.85) 0%,transparent 70%);pointer-events:none;transition:transform .6s cubic-bezier(.16,1,.3,1),opacity .6s;z-index:0}
+.hood.lifted .shadow{transform:scale(.6);opacity:.4}
+.hood .coin{position:absolute;bottom:42px;left:50%;width:50px;height:50px;margin-left:-25px;border-radius:50%;z-index:2;opacity:0;transition:transform .65s cubic-bezier(.2,.9,.2,1),opacity .45s ease;filter:drop-shadow(0 0 18px rgba(199,210,254,.85));pointer-events:none}
+.hood .coin svg{width:100%;height:100%;display:block}
+.coin .spin{position:relative;width:100%;height:100%;border-radius:50%;overflow:hidden;animation:spin 3.2s linear infinite}
+@keyframes spin{0%{transform:rotateY(0)}50%{transform:rotateY(180deg)}100%{transform:rotateY(360deg)}}
+.coin .spin::after{content:"";position:absolute;inset:0;border-radius:50%;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.6) 50%,transparent 65%);background-size:250% 100%;animation:shine 2.4s ease-in-out infinite;mix-blend-mode:overlay}
+@keyframes shine{from{background-position:150% 0}to{background-position:-50% 0}}
+.coin-label{position:absolute;left:50%;bottom:-22px;transform:translateX(-50%);font:600 11px var(--mono);letter-spacing:.12em;color:var(--accent);white-space:nowrap;opacity:0;transition:opacity .4s .3s}
+.revealed .coin-label,.hood.idle-coin .coin-label{opacity:1}
+.revealed .coin .spin{animation:pop .6s cubic-bezier(.3,1.6,.5,1) backwards,spin 3.2s .6s linear infinite}
+@keyframes pop{from{transform:scale(.3)}}
+.hood button{position:absolute;bottom:24px;width:min(148px,88%);aspect-ratio:233/360;padding:0;border:0;background:transparent;display:flex;align-items:flex-end;justify-content:center;z-index:4;transition:transform .65s cubic-bezier(.16,1,.3,1),filter .35s ease,opacity .4s}
+.hood button:not([disabled]){cursor:pointer}
+.hood .bust-img{width:100%;height:auto;display:block;filter:drop-shadow(0 14px 28px rgba(0,0,0,.85));transition:transform .4s cubic-bezier(.16,1,.3,1),filter .3s ease;user-select:none;pointer-events:auto}
+.hood button:not([disabled]):hover{transform:translateY(-8px) scale(1.02);filter:drop-shadow(0 0 24px rgba(199,210,254,.75))}
+.hood.picked button{filter:drop-shadow(0 0 34px rgba(245,210,140,.9))}
+.hood.lifted button{transform:translateY(-115px);filter:drop-shadow(0 0 28px rgba(199,210,254,.85))}
+.hood.revealed .coin{filter:drop-shadow(0 0 28px rgba(199,210,254,.95))}
+@media (max-width:640px){.hood{height:220px;bottom:16px}.hood .plinth{width:min(80px,70%);height:30px}.hood .coin{bottom:32px;width:40px;height:40px;margin-left:-20px}.hood button{bottom:18px}.hood.lifted button{transform:translateY(-80px)}.hood .shadow{width:76px;margin-left:-38px}.table{height:330px}.hud span{padding:6px 10px}}
+.game-cta{display:flex;justify-content:center;min-height:56px;margin-top:12px}
+
+/* statement */
+.clean{padding-block:150px;border-top:1px solid rgba(255,255,255,.05)}
+.clean .wrap{display:flex;flex-direction:column;gap:72px}
+.big{margin:0;font:400 clamp(46px,9vw,148px)/.98 var(--headline);letter-spacing:-.02em;display:flex;flex-wrap:wrap;gap:0 .24em}
+.big .n{color:var(--dim)}.big .a{color:var(--accent)}
+.big span{display:inline-block;will-change:filter,opacity,transform}
+.points{display:flex;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.1)}
+.points div{flex:1 1 280px;min-width:0;padding:28px 28px 0 0;display:flex;flex-direction:column;gap:10px}
+.points .mono{font-size:11px;color:var(--accent)}
+.points p{margin:0;font-size:17px;line-height:1.5;color:#C9D2DB}
+@supports (animation-timeline: view()){
+  .slide{animation:slide linear both;animation-timeline:view();animation-range:entry 0% cover 30%}
+}
+@keyframes word{from{opacity:.25;filter:blur(12px);transform:translateY(30px)}to{opacity:1;filter:none;transform:none}}
+@keyframes slide{from{opacity:.2;transform:translateY(60px)}to{opacity:1;transform:none}}
+
+/* enter */
+.enter{position:relative;padding-block:140px 120px;border-top:1px solid rgba(255,255,255,.05);overflow:hidden;display:flex;flex-direction:column;align-items:center;text-align:center;gap:28px}
+.enter .mono{color:var(--dim)}
+.flashbox{position:relative;width:100%}
+.flashbox div{font:400 clamp(44px,13vw,175px)/.95 var(--headline);letter-spacing:.20em;padding-left:.20em;user-select:none}
+.flashbox .base{color:rgba(255,255,255,.045)}
+.flashbox .lit{position:absolute;inset:0;color:var(--accent);-webkit-mask-image:radial-gradient(circle 220px at var(--cx,-999px) var(--cy,-999px),#000 0%,rgba(0,0,0,.4) 50%,transparent 100%);mask-image:radial-gradient(circle 220px at var(--cx,-999px) var(--cy,-999px),#000 0%,rgba(0,0,0,.4) 50%,transparent 100%)}
+.enter p{margin:0;max-width:40ch;font-size:18px;line-height:1.55;color:var(--soft)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+body:not(.ready) .rise,body:not(.ready) .ghostword{animation-play-state:paused}
+
+@media (prefers-reduced-motion:reduce){
+  .halo,.ghostword,.pulse,.rise,.bob,.slide,.coin .spin,.coin .spin::after,.hood.hop button{animation:none}
+  .phase,.hood,.coin,.hood button{transition:none}
+}
+
+
+.nav.scrolled{animation:none!important;transform:none!important}
+</style>
+  <script type="module" crossorigin src="./assets/hosts-Dhq3J-lZ.js"></script>
+  <script type="module" crossorigin src="./assets/site-nav-CTcSYDIB.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/hosts-DyUKjrHR.css">
+  <link rel="stylesheet" crossorigin href="./assets/site-nav-CgcRjVws.css">
+  <link rel="stylesheet" crossorigin href="./assets/loader-LzncGZh9.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader-inner">
+    <svg viewBox="0 0 28 28" fill="none">
+      <path class="lh-outer" d="M 5 6 L 10 6 L 14 20 L 18 6 L 23 6 L 23.5 7.8 L 21.2 7.8 L 15.4 23 L 12.6 23 L 6.8 7.8 L 4.5 7.8 Z" fill="#10151F" stroke="#A5B4FC" stroke-width="1.2"/>
+      <path class="lh-void" d="M 10 6 Q 14 13 18 6" stroke="rgba(199,210,254,0.6)" stroke-width="0.8" fill="none"/>
+      <circle class="lh-eye" cx="14" cy="13.5" r="1.5" fill="#FFFFFF"/>
+    </svg>
+    <div class="loader-word">V E I L E D</div>
+    <div class="loader-bar"><span></span></div>
+    <div class="loader-status">Entering the dark</div>
+  </div>
+</div>
+<script>
+(() => {
+  // The intro plays once when you first enter (per tab). Reloads and pages you open
+  // afterwards in the same visit skip it. Pages that load data first set <html data-wait-app>
+  // and call window.veiledLoaded() when ready.
+  const el = document.getElementById('loader');
+  const finish = () => { document.body.classList.add('ready'); document.dispatchEvent(new Event('veiled:ready')); };
+  let seen = false;
+  try { seen = sessionStorage.getItem('veiled-seen') === '1'; sessionStorage.setItem('veiled-seen', '1'); } catch (e) {}
+  if (seen) { el.remove(); window.veiledLoaded = () => {}; finish(); return; }
+  const bar = el.querySelector('.loader-bar span');
+  const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const min = reduce ? 0 : 850;
+  const start = performance.now();
+  let p = 0, pending = 'waitApp' in document.documentElement.dataset ? 2 : 1, done = false;
+  const tick = setInterval(() => { p += (0.92 - p) * 0.1; bar.style.setProperty('--p', p.toFixed(3)); }, 80);
+  window.veiledLoaded = () => {
+    if (done || --pending > 0) return;
+    done = true;
+    setTimeout(() => {
+      clearInterval(tick);
+      bar.style.setProperty('--p', '1');
+      setTimeout(() => { el.classList.add('out'); finish(); setTimeout(() => el.remove(), 700); }, 120);
+    }, Math.max(0, min - (performance.now() - start)));
+  };
+  if (document.readyState === 'complete') {
+    window.veiledLoaded();
+  } else {
+    addEventListener('load', () => window.veiledLoaded());
+    setTimeout(() => window.veiledLoaded(), 1000);
+  }
+})();
+</script>
+
+
+<header class="nav" id="siteNav">
+  <div class="navbar">
+    <a class="brand" href="/" aria-label="Veiled home">
+      <svg width="24" height="24" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="v-nav-mark" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#FFFFFF"/>
+            <stop offset="60%" stop-color="#C7D2FE"/>
+            <stop offset="100%" stop-color="#818CF8"/>
+          </linearGradient>
+        </defs>
+        <path d="M 5 6 L 10 6 L 14 20 L 18 6 L 23 6 L 23.5 7.8 L 21.2 7.8 L 15.4 23 L 12.6 23 L 6.8 7.8 L 4.5 7.8 Z" fill="url(#v-nav-mark)"/>
+        <path d="M 10 6 Q 14 13 18 6" stroke="rgba(199,210,254,0.6)" stroke-width="0.8" fill="none"/>
+        <circle cx="14" cy="13.5" r="1.4" fill="#FFFFFF"/>
+      </svg>
+      <span>V E I L E D</span>
+    </a>
+    <nav class="navlinks" aria-label="Main">
+      <a href="#story">How it works</a>
+      <a href="#game">Try it</a>
+      <a href="https://robinhoodchain.blockscout.com" target="_blank" rel="noopener">Blockscout Explorer ↗</a>
+      <a href="#clean">Security</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn" href="https://x.com/veiledprivacy" target="_blank" rel="noopener">Follow on X <span class="arr">↗</span></a>
+      <button type="button" class="menu-btn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Menu" hidden>
+    <a href="#story">How it works</a>
+    <a href="#game">Try it</a>
+    <a href="#clean">Security</a>
+    <a href="https://robinhoodchain.blockscout.com" target="_blank" rel="noopener">Blockscout Explorer ↗</a>
+    <a href="https://x.com/veiledprivacy" target="_blank" rel="noopener">Follow on X ↗</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="top">
+    <div class="halo" aria-hidden="true"></div>
+    <div class="ghostword" aria-hidden="true">V E I L E D</div>
+    <canvas id="heroCanvas" aria-hidden="true"></canvas>
+    <div class="wrap hero-copy">
+      <div class="hero-main">
+        <span class="mono rise d1" style="color:var(--soft)">Zero-Knowledge Privacy · Robinhood Chain (EVM 4663)</span>
+        <h1 class="rise d2">Silence on the ledger.<br>Leave no <em>shadow.</em></h1>
+        <p class="rise d3">Shield ETH and USDC into cryptographic zero-knowledge pools on Robinhood Chain. Fair launching on Pons Family Launchpad with zero transaction lineage.</p>
+        <div class="row rise d4">
+          <a class="btn" href="#story">Explore Protocol <span class="bob">↓</span></a>
+          <a class="ghost" href="https://x.com/veiledprivacy" target="_blank" rel="noopener">Follow Announcements <span class="arr">↗</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="story" id="story" aria-label="How Veiled works">
+    <div class="stage" id="stage">
+      <canvas id="storyCanvas" aria-hidden="true"></canvas>
+      <div class="wrap stage-top">
+        <div class="phases">
+          <div class="phase is-active" data-i="0">
+            <span class="mono">01 · The Glass Ledger</span>
+            <h2>Your wallet is transparent.</h2>
+            <p>On public chains, every transfer, swap, and counterparty is clustered, tracked, and profiled in real time.</p>
+          </div>
+          <div class="phase" data-i="1">
+            <span class="mono">02 · Cryptographic Shield</span>
+            <h2>Sever on-chain lineage.</h2>
+            <p>A single client-side zero-knowledge proof deposits your ETH or USDC on Robinhood Chain into the Merkle accumulator pool. That is the last trace anyone sees.</p>
+          </div>
+          <div class="phase" data-i="2">
+            <span class="mono">03 · Anonymity Swarm</span>
+            <h2>Dissolve into noise.</h2>
+            <p>Inside the accumulator, your state blends into thousands of other deposits. Mathematical entropy makes deterministic tracking impossible.</p>
+          </div>
+          <div class="phase" data-i="3">
+            <span class="mono">04 · Clean Withdrawal</span>
+            <h2>Emerge untraceable.</h2>
+            <p>Withdraw clean assets to any unlinked destination wallet. Decentralized relayers sponsor initial gas so your fresh wallet needs zero prior history.</p>
+          </div>
+        </div>
+        <div class="rail" aria-hidden="true">
+          <span class="on">01<i></i></span><span>02<i></i></span><span>03<i></i></span><span>04<i></i></span>
+        </div>
+      </div>
+      <div class="progress" aria-hidden="true">
+        <div class="wrap mono"><span id="modeLabel">Scroll</span><span class="track"><span class="bar" id="bar"></span></span><span>Shield → Blend in → Withdraw</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="game" id="game">
+    <div class="wrap">
+      <div class="game-head slide">
+        <span class="mono">The Mathematics of Anonymity</span>
+        <h2>The Shuffling Veil.</h2>
+        <p id="shellMsg" aria-live="polite">Five silent custodians on Robinhood Chain. One deposit of 0.1 ETH. Watch the shuffle, then track your asset through the zero-knowledge veil.</p>
+        <div class="hud mono" aria-hidden="true"><span>Veiled Custodians <b>5</b></span><span>Swaps <b id="swapCount">0</b></span><span>Your odds <b id="oddsText">1 in 5</b></span></div>
+      </div>
+      <div class="table" id="table">
+        <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="hg-cloak" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A3542"/><stop offset=".55" stop-color="#131A22"/><stop offset="1" stop-color="#07090C"/></linearGradient>
+            <radialGradient id="cg-face" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".45" stop-color="#D3E1EE"/><stop offset="1" stop-color="#7F95AB"/></radialGradient>
+            <linearGradient id="cg-rim" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F2F7FC"/><stop offset=".5" stop-color="#93A8BD"/><stop offset="1" stop-color="#4D6074"/></linearGradient>
+            <filter id="hg-glow" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation=".45" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+        </svg>
+        <div class="floor" aria-hidden="true"></div>
+        <div class="spot" id="spot" aria-hidden="true"></div>
+      </div>
+      <div class="game-cta"><button type="button" class="btn" id="shellBtn">Initiate Shuffle</button></div>
+    </div>
+  </section>
+
+  <section class="clean" id="clean">
+    <div class="wrap">
+      <h2 class="big"><span>Privacy is not secrecy.</span><span class="n">Privacy is</span><span class="a">sovereignty.</span></h2>
+      <div class="points slide">
+        <div><span class="mono">Client-Side Zero-Knowledge</span><p>Proofs are generated locally in WebAssembly inside your browser session. Private keys and secrets never touch external servers.</p></div>
+        <div><span class="mono">Decentralized Relayer Mesh</span><p>Independent relayers broadcast withdrawal transactions and pay on-chain fees, completely eliminating origin-to-destination linkages.</p></div>
+        <div><span class="mono">Guaranteed Non-Custodial Exit</span><p>Smart contracts enforce immutable withdrawal logic. Nobody can freeze, censor, or restrict your deposits. Not even us.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="enter" id="enter">
+    <span class="mono">Reclaim On-Chain Autonomy</span>
+    <div class="flashbox" id="flashbox">
+      <div class="base" aria-hidden="true">V E I L E D</div>
+      <div class="lit" aria-hidden="true">V E I L E D</div>
+      <span class="sr">Veiled</span>
+    </div>
+    <p>The zero-knowledge veil is descending upon Robinhood Chain.</p>
+    <a class="btn" href="https://x.com/veiledprivacy" target="_blank" rel="noopener">Follow @veiledprivacy on X <span class="arr">↗</span></a>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="sf-glow" aria-hidden="true"></div>
+  <div class="sf-in">
+    <a class="sf-brand" href="/" data-site="/" aria-label="Veiled home">
+      <svg width="36" height="36" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="v-foot-mark" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#FFFFFF"/>
+            <stop offset="60%" stop-color="#C7D2FE"/>
+            <stop offset="100%" stop-color="#818CF8"/>
+          </linearGradient>
+        </defs>
+        <path d="M 5 6 L 10 6 L 14 20 L 18 6 L 23 6 L 23.5 7.8 L 21.2 7.8 L 15.4 23 L 12.6 23 L 6.8 7.8 L 4.5 7.8 Z" fill="url(#v-foot-mark)"/>
+        <path d="M 10 6 Q 14 13 18 6" stroke="rgba(199,210,254,0.6)" stroke-width="0.8" fill="none"/>
+        <circle cx="14" cy="13.5" r="1.4" fill="#FFFFFF"/>
+      </svg>
+      <span>V E I L E D</span>
+    </a>
+    <p class="sf-tag">Zero-knowledge state shield on Robinhood Chain (EVM 4663).</p>
+    <nav class="sf-links" aria-label="Footer">
+      <a href="https://ponsfamily.com/launchpad" target="_blank" rel="noopener">Pons Family Launchpad</a>
+      <a href="https://robinhoodchain.blockscout.com" target="_blank" rel="noopener">Robinhood Blockscout</a>
+      <a href="#clean">Architecture</a>
+      <a href="#story">How it works</a>
+      <a href="#game">Shuffling Veil</a>
+    </nav>
+    <div class="sf-social">
+      <a class="sf-chip" href="https://x.com/veiledprivacy" target="_blank" rel="noopener" aria-label="Veiled on X (@veiledprivacy)">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        <span>@veiledprivacy</span>
+      </a>
+      <a class="sf-chip" href="mailto:contact@veiled.space" aria-label="Email contact@veiled.space">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M4 7l8 6 8-6"/></svg>
+        <span>contact@veiled.space</span>
+      </a>
+    </div>
+    <div class="sf-rule" aria-hidden="true"></div>
+    <p class="sf-legal">Veiled Privacy is an independent decentralized protocol built on Robinhood Chain (Chain ID: 4663). Fair launching via Pons Family Launchpad (ponsfamily.com/launchpad). Non-custodial smart contracts.</p>
+    <p class="sf-copy">© 2026 V E I L E D · Robinhood Chain · <a href="https://veiled.space" style="color:inherit;text-decoration:none">veiled.space</a></p>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const btn = document.getElementById('caCopy');
+  const card = btn.closest('.ca');
+  const addr = document.getElementById('caAddr').dataset.ca;
+  let t;
+  // The whole address chip copies, not just the icon button.
+  btn.closest('.ca-addr').addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(addr); } catch {
+      // Clipboard API refused (no focus or permission): fall back to a hidden textarea.
+      const ta = Object.assign(document.createElement('textarea'), { value: addr });
+      ta.style.cssText = 'position:fixed;opacity:0';
+      document.body.append(ta);
+      ta.select();
+      const ok = document.execCommand('copy');
+      ta.remove();
+      if (!ok) return;
+    }
+    // Re-adding the class restarts the sweep and glow on repeat clicks.
+    card.classList.remove('done');
+    void card.offsetWidth;
+    card.classList.add('done');
+    btn.setAttribute('aria-label', 'Copied');
+    // The hero hood reacts too (see the hero script).
+    document.dispatchEvent(new CustomEvent('veiled:copied', { detail: btn.getBoundingClientRect() }));
+    clearTimeout(t);
+    t = setTimeout(() => { card.classList.remove('done'); btn.setAttribute('aria-label', 'Copy contract address'); }, 1800);
+  });
+})();
+</script>
+<script>
+(() => {
+  const HOOD = 'M 14 1.8 C 17.5 1.8 22.5 5.5 23.5 10.5 C 24.5 15 25 20 25.5 26 L 2.5 26 C 3 20 3.5 15 4.5 10.5 C 5.5 5.5 10.5 1.8 14 1.8 Z';
+  const VOID = 'M 14 6.5 C 17.5 6.5 19 9.5 19 13.5 C 19 17.5 17 20 14 20.2 C 11 20 9 17.5 9 13.5 C 9 9.5 10.5 6.5 14 6.5 Z';
+  const ACC = [165, 180, 252];
+  const accRGB = 'rgb(' + ACC.join(',') + ')';
+  const accA = (a) => 'rgba(' + ACC.join(',') + ',' + a + ')';
+  const HOT = '#FB7185';
+  const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const clamp = (v) => Math.max(0, Math.min(1, v));
+  const ease = (v) => v < 0.5 ? 4 * v * v * v : 1 - Math.pow(-2 * v + 2, 3) / 2;
+  const DPR = () => Math.min(window.devicePixelRatio || 1, 2);
+  const visible = (el) => { const r = el.getBoundingClientRect(); return r.bottom > -50 && r.top < innerHeight + 50; };
+  let t0 = performance.now();
+  document.addEventListener('veiled:ready', () => { t0 = performance.now(); });
+
+  /* ---------------- hero: The Veiled Marble Sentinel (Atmospheric Center & Fluid Physics) ---------------- */
+  const hero = document.getElementById('top');
+  const hcv = document.getElementById('heroCanvas');
+  const hctx = hcv.getContext('2d');
+  const mouse = { x: -9999, y: -9999, radius: 105 };
+  let hw = 0, hh = 0, hcx = 0, hcy = 0, artSize = 0, hp = null, copyAt = -1e9;
+  const sparks = [];
+
+  const sentinelImg = new Image();
+  sentinelImg.src = './assets/veiled_sentinel.jpg';
+  let imgLoaded = false;
+  let rawPoints = [];
+
+  // Glass Ledger: Justitia Velata with Balance Scales
+  const scalesImg = new Image();
+  let scalesLoaded = false;
+  let scalePoints = [];
+
+  function sampleScalesImage() {
+    const Sw = 320, Sh = 363; // 820x930 aspect ratio (0.88)
+    const oc = document.createElement('canvas'); oc.width = Sw; oc.height = Sh;
+    const c = oc.getContext('2d');
+    c.drawImage(scalesImg, 0, 0, Sw, Sh);
+    const data = c.getImageData(0, 0, Sw, Sh).data;
+    scalePoints = [];
+    const step = 3;
+    for (let y = 0; y < Sh; y += step) {
+      for (let x = 0; x < Sw; x += step) {
+        const idx = (y * Sw + x) * 4;
+        const r = data[idx], g = data[idx+1], b = data[idx+2];
+        const lum = r * 0.299 + g * 0.587 + b * 0.114;
+        if (lum > 24) {
+          const nx = x / Sw - 0.5; // -0.5 to +0.5
+          const ny = y / Sh - 0.5; // -0.5 to +0.5
+          scalePoints.push({
+            nx, ny,
+            lum: lum / 255,
+            size: lum > 175 ? 1.5 : 1.1,
+            ph: Math.random() * 6.283,
+            dist: Math.hypot(nx, ny)
+          });
+        }
+      }
+    }
+    scalesLoaded = true;
+  }
+  scalesImg.onload = sampleScalesImage;
+  scalesImg.src = './assets/veiled_scales_cropped.jpg';
+  if (scalesImg.complete) sampleScalesImage();
+
+  function sampleSentinelImage() {
+    const S = 360;
+    const oc = document.createElement('canvas'); oc.width = S; oc.height = S;
+    const c = oc.getContext('2d');
+    c.drawImage(sentinelImg, 0, 0, S, S);
+    const data = c.getImageData(0, 0, S, S).data;
+    rawPoints = [];
+    const step = 3; // Fine stipple sampling (~5,400 dither dots)
+    for (let y = 0; y < S; y += step) {
+      for (let x = 0; x < S; x += step) {
+        const idx = (y * S + x) * 4;
+        const lum = data[idx] * 0.299 + data[idx+1] * 0.587 + data[idx+2] * 0.114;
+        if (lum > 35) {
+          rawPoints.push({
+            nx: x / S,
+            ny: y / S,
+            lum: lum / 255,
+            size: lum > 175 ? 1.5 : 1.2
+          });
+        }
+      }
+    }
+    imgLoaded = true;
+    sizeHero();
+    
+  }
+  sentinelImg.onload = sampleSentinelImage;
+
+  function sizeHero() {
+    const r = hcv.getBoundingClientRect(), d = DPR();
+    hcv.width = Math.max(1, r.width * d); hcv.height = Math.max(1, r.height * d);
+    hctx.setTransform(d, 0, 0, d, 0, 0);
+    hw = r.width; hh = r.height;
+    
+    // Right-aligned and enlarged on desktop, centered on mobile
+    const isDesktop = hw >= 960;
+    hcx = isDesktop ? (hw * 0.72) : (hw * 0.5);
+    artSize = isDesktop
+      ? Math.min(880, hw * 0.54, hh * 0.94)
+      : Math.min(640, hw * 0.84, hh * 0.78);
+    hcy = isDesktop ? (hh * 0.48) : (100 + artSize * 0.48);
+
+    if (!imgLoaded || !rawPoints.length) return;
+    const old = hp;
+    hp = rawPoints.map((q, i) => {
+      const prev = old && old[i];
+      const ox = hcx + (q.nx - 0.5) * artSize;
+      const oy = hcy + (q.ny - 0.5) * artSize;
+      return {
+        ox, oy,
+        x: prev ? prev.x : ox + (Math.random() - 0.5) * 16,
+        y: prev ? prev.y : oy + (Math.random() - 0.5) * 16,
+        vx: prev ? prev.vx : 0, vy: prev ? prev.vy : 0,
+        lum: q.lum,
+        size: q.size,
+        ph: Math.random() * 6.283
+      };
+    });
+  }
+
+  function drawHero(t) {
+    if (!hp || !visible(hcv)) return;
+    hctx.clearRect(0, 0, hw, hh);
+
+    const R = mouse.radius, R2 = R * R;
+    const cs = (performance.now() - copyAt) / 1000;
+    const shockwave = cs >= 0 && cs < 2.0 ? Math.max(0, 1 - cs / 1.5) : 0;
+    const shockRadius = cs * 380;
+
+    for (let i = 0; i < hp.length; i++) {
+      const p = hp[i];
+
+      // Subtle ambient breathing float
+      const breathe = Math.sin(t * 1.3 + p.ph) * 1.8;
+      const tx = p.ox, ty = p.oy + breathe;
+
+      // Fluid spring pull
+      p.vx += (tx - p.x) * 0.08;
+      p.vy += (ty - p.y) * 0.08;
+
+      // Fluid mouse ripple
+      const dx = p.x - mouse.x, dy = p.y - mouse.y;
+      const d2 = dx * dx + dy * dy;
+      if (d2 < R2) {
+        const d = Math.sqrt(d2) || 1;
+        const force = (1 - d / R) * 6.5;
+        p.vx += (dx / d) * force;
+        p.vy += (dy / d) * force;
+      }
+
+      // Ballistic copy shockwave wave
+      if (shockwave > 0.01) {
+        const scx = p.x - hcx, scy = p.y - hcy;
+        const sd = Math.hypot(scx, scy) || 1;
+        const ringDist = Math.abs(sd - shockRadius);
+        if (ringDist < 60) {
+          const rf = (1 - ringDist / 60) * 4.5 * shockwave;
+          p.vx += (scx / sd) * rf;
+          p.vy += (scy / sd) * rf;
+        }
+      }
+
+      // Fluid damping
+      p.vx *= 0.82;
+      p.vy *= 0.82;
+      p.x += p.vx;
+      p.y += p.vy;
+
+      // Calibrated atmospheric opacity (ethereal in background, glowing on ripple/copy)
+      const baseAlpha = p.lum * 0.62;
+      const activeAlpha = Math.min(1.0, baseAlpha * (1.0 + shockwave * 1.2));
+      hctx.fillStyle = 'rgba(240, 244, 255, ' + activeAlpha.toFixed(3) + ')';
+      hctx.fillRect(p.x, p.y, p.size, p.size);
+    }
+
+    // Ballistic sparks from contract card into the veil
+    for (let i = sparks.length - 1; i >= 0; i--) {
+      const s = sparks[i];
+      s.age += 1 / 60;
+      if (s.age < 0) continue;
+      const dx = hcx + s.tx - s.x, dy = hcy + s.ty - s.y, d = Math.hypot(dx, dy) || 1;
+      const pull = Math.min(2.4, 0.25 + s.age * 2.2);
+      s.vx = (s.vx + (dx / d) * pull) * 0.94; s.vy = (s.vy + (dy / d) * pull) * 0.94;
+      s.x += s.vx; s.y += s.vy;
+      if (d < 12 || s.age > 3) { sparks.splice(i, 1); continue; }
+      hctx.fillStyle = accRGB;
+      hctx.globalAlpha = Math.min(1, s.age * 4) * 0.9;
+      hctx.fillRect(s.x, s.y, 2, 2);
+    }
+    hctx.globalAlpha = 1;
+  }
+
+  hero.addEventListener('pointermove', (e) => {
+    const r = hero.getBoundingClientRect();
+    mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
+  });
+  hero.addEventListener('pointerleave', () => { mouse.x = mouse.y = -9999; });
+
+  const heroEl = document.getElementById('top');
+  if (heroEl) {
+    heroEl.addEventListener('click', (e) => {
+      if (e.target.closest('a, button')) return;
+      copyAt = performance.now();
+      if (reduce) return;
+      const r = heroEl.getBoundingClientRect();
+      const x0 = e.clientX - r.left, y0 = e.clientY - r.top;
+      for (let i = 0; i < 36; i++) {
+        const a = Math.random() * 6.2832, v = 2 + Math.random() * 5;
+        sparks.push({
+          x: x0, y: y0,
+          vx: Math.cos(a) * v, vy: Math.sin(a) * v - 2,
+          age: -i * 0.006,
+          tx: (Math.random() - 0.5) * 80, ty: (Math.random() - 0.5) * 80
+        });
+      }
+    });
+  }
+
+  document.addEventListener('veiled:copied', (e) => {
+    copyAt = performance.now();
+    if (reduce) return;
+    const r = hero.getBoundingClientRect(), b = e.detail;
+    const x0 = b.left + b.width / 2 - r.left, y0 = b.top + b.height / 2 - r.top;
+    for (let i = 0; i < 48; i++) {
+      const a = Math.random() * 6.2832, v = 2 + Math.random() * 5;
+      sparks.push({
+        x: x0, y: y0,
+        vx: Math.cos(a) * v, vy: Math.sin(a) * v - 2,
+        age: -i * 0.006,
+        tx: (Math.random() - 0.5) * 80, ty: (Math.random() - 0.5) * 80
+      });
+    }
+  });
+
+  /* ---------------- story: pinned, scroll-scrubbed ---------------- */
+  const story = document.getElementById('story');
+  const stage = document.getElementById('stage');
+  const scv = document.getElementById('storyCanvas');
+  const sctx = scv.getContext('2d');
+  const bar = document.getElementById('bar');
+  const modeLabel = document.getElementById('modeLabel');
+  const phaseEls = [...document.querySelectorAll('.phase')];
+  const railEls = [...document.querySelectorAll('.rail span')];
+  let sw = 0, sh = 0, ps = 0, phase = 0, scrollMode = null;
+  
+  const you = [], others = [];
+  for (let i = 0; i < 30 * 18; i++) you.push({ u: (i % 30) / 29 - 0.5, v: Math.floor(i / 30) / 17 - 0.5, ai: Math.random() * 6.283, ri: Math.sqrt(Math.random()) * 0.85, di: Math.random(), ph: Math.random() * 6.283 });
+  for (let j = 0; j < 900; j++) others.push({ ai: Math.random() * 6.283, ri: Math.sqrt(Math.random()) * 0.95, sp: 0.4 + Math.random() * 0.9 });
+
+  function sizeStory() {
+    const r = scv.getBoundingClientRect(), d = DPR();
+    scv.width = Math.max(1, r.width * d); scv.height = Math.max(1, r.height * d);
+    sctx.setTransform(d, 0, 0, d, 0, 0);
+    sw = r.width; sh = r.height;
+  }
+  function setPhase(n) {
+    if (n === phase) return;
+    phase = n;
+    phaseEls.forEach((el, i) => { el.classList.toggle('is-active', i === n); el.classList.toggle('is-past', i < n); el.setAttribute('aria-hidden', i === n ? 'false' : 'true'); });
+    railEls.forEach((el, i) => { el.classList.toggle('on', i === n); el.classList.toggle('done', i < n); });
+  }
+  phaseEls.forEach((el, i) => el.setAttribute('aria-hidden', i === 0 ? 'false' : 'true'));
+
+  function rrect(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y); ctx.lineTo(x + w - r, y); ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+    ctx.lineTo(x + w, y + h - r); ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    ctx.lineTo(x + r, y + h); ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+    ctx.lineTo(x, y + r); ctx.quadraticCurveTo(x, y, x + r, y); ctx.closePath();
+  }
+  const bez = (a, c, e, s) => { const u = 1 - s; return { x: u * u * a.x + 2 * u * s * c.x + s * s * e.x, y: u * u * a.y + 2 * u * s * c.y + s * s * e.y }; };
+
+  function drawStory(t) {
+    if (!visible(scv)) return;
+    const se = document.scrollingElement || document.documentElement;
+    const sm = se.scrollHeight - innerHeight > 600;
+    if (sm !== scrollMode) { scrollMode = sm; modeLabel.textContent = sm ? 'Scroll' : 'Playing'; }
+    let target;
+    if (sm) {
+      const rr = story.getBoundingClientRect();
+      target = clamp(-rr.top / Math.max(1, rr.height - stage.offsetHeight));
+    } else {
+      const c = (t * 0.05) % 1.25;
+      target = Math.min(1, c);
+      if (c < 0.02) ps = 0;
+    }
+    ps += (target - ps) * (reduce ? 1 : 0.08);
+    const p = ps;
+    bar.style.transform = 'scaleX(' + p.toFixed(4) + ')';
+    setPhase(p < 0.22 ? 0 : p < 0.5 ? 1 : p < 0.76 ? 2 : 3);
+
+    const w = sw, h = sh, ctx = sctx;
+    const narrow = w < 760;
+    const sceneY = narrow ? h * 0.64 : h * 0.6;
+    const rad = Math.max(30, Math.min(80, w * 0.07, h * 0.1));
+    const cw = Math.max(80, Math.min(230, w * 0.17)), ch = cw * 0.62;
+    const A = { x: Math.max(cw / 2 + 16, w * 0.15), y: sceneY };
+    const B = { x: w - A.x, y: sceneY };
+    const C = { x: w / 2, y: sceneY };
+    const f1 = clamp((p - 0.2) / 0.26), f2 = clamp((p - 0.74) / 0.22);
+    const k = rad / 5;
+    ctx.clearRect(0, 0, w, h);
+
+    const gr = ctx.createRadialGradient(C.x, C.y, 0, C.x, C.y, rad * 4.2);
+    gr.addColorStop(0, accA(0.16 + 0.1 * Math.sin(t * 1.2)));
+    gr.addColorStop(1, accA(0));
+    ctx.fillStyle = gr; ctx.beginPath(); ctx.arc(C.x, C.y, rad * 4.2, 0, 6.2832); ctx.fill();
+
+        // ---------------- Central Justitia Velata & Weighing Scales ----------------
+    // Enlarged, majestic scaling with generous clearances around Wallet A and Wallet B
+    const sW = narrow
+      ? Math.min(w * 0.70, 290)
+      : Math.min(460, w * 0.32, (sceneY - 90) * 1.15);
+    const sH = sW * 1.134; // 820x930 aspect ratio (0.88)
+    const isMixing = p >= 0.28 && p <= 0.76;
+    const strikeShock = (p >= 0.20 && p <= 0.54) ? (1 - Math.abs(p - 0.37) / 0.17) : 0;
+
+    // Interactive scale tilt:
+    // Phase 01: Left pan tilted down by heavy exposed 14.20 ETH (-0.05 rad)
+    // Phase 02: Returning to horizontal as funds enter fulcrum
+    // Phase 03: Gentle harmonic equilibrium oscillation (~0 rad)
+    // Phase 04: Right pan tilts down slightly (+0.035 rad) as clean funds exit
+    let tilt = 0;
+    if (p < 0.22) {
+      tilt = -0.052;
+    } else if (p < 0.50) {
+      const u = (p - 0.22) / 0.28;
+      tilt = -0.052 * (1 - ease(u));
+    } else if (p < 0.76) {
+      tilt = Math.sin(t * 2.4) * 0.012 * (1 - ease((p - 0.50) / 0.26));
+    } else {
+      const u = clamp((p - 0.76) / 0.20);
+      tilt = 0.036 * ease(u);
+    }
+
+    // 1. ZK State Atmospheric Glow behind Justitia
+    const haloRad = sW * 0.85;
+    const sHalo = ctx.createRadialGradient(C.x, C.y, 0, C.x, C.y, haloRad);
+    const haloIntensity = 0.18 + (isMixing ? 0.14 : 0) + (strikeShock * 0.12) + 0.04 * Math.sin(t * 1.8);
+    sHalo.addColorStop(0, accA(haloIntensity));
+    sHalo.addColorStop(0.48, accA(haloIntensity * 0.4));
+    sHalo.addColorStop(1, 'rgba(3,4,5,0)');
+    ctx.fillStyle = sHalo;
+    ctx.beginPath();
+    ctx.arc(C.x, C.y, haloRad, 0, 6.2832);
+    ctx.fill();
+
+    // 2. Cryptographic Orbital Merkle Rings (3D perspective ellipses around fulcrum)
+    const ringAlpha = clamp((p - 0.18) / 0.16) * (1 - clamp((p - 0.86) / 0.12));
+    if (ringAlpha > 0.01) {
+      ctx.save();
+      ctx.globalAlpha = ringAlpha * 0.38;
+      ctx.strokeStyle = accRGB;
+      ctx.lineWidth = 1;
+      // Inner orbital ring
+      ctx.setLineDash([3, 7]);
+      ctx.lineDashOffset = -t * 18;
+      ctx.beginPath();
+      ctx.ellipse(C.x, C.y + sH * 0.02, sW * 0.70, sH * 0.36, -0.10, 0, 6.2832);
+      ctx.stroke();
+      // Outer orbital ring
+      ctx.setLineDash([5, 9]);
+      ctx.lineDashOffset = t * 14;
+      ctx.beginPath();
+      ctx.ellipse(C.x, C.y + sH * 0.02, sW * 0.94, sH * 0.50, 0.12, 0, 6.2832);
+      ctx.stroke();
+
+      // Orbiting Poseidon hash nodes along rings
+      if (isMixing) {
+        ctx.setLineDash([]);
+        ctx.fillStyle = '#FFFFFF';
+        const a1 = -t * 1.8, a2 = t * 1.2 + 2.0;
+        const n1x = C.x + Math.cos(a1) * sW * 0.70;
+        const n1y = C.y + sH * 0.02 + Math.sin(a1) * sH * 0.36;
+        ctx.beginPath(); ctx.arc(n1x, n1y, 2.2, 0, 6.2832); ctx.fill();
+        const n2x = C.x + Math.cos(a2) * sW * 0.94;
+        const n2y = C.y + sH * 0.02 + Math.sin(a2) * sH * 0.50;
+        ctx.beginPath(); ctx.arc(n2x, n2y, 2.6, 0, 6.2832); ctx.fill();
+      }
+      ctx.restore();
+    }
+
+    // 3. Render Justitia Velata with Tilted Balance Scales
+    // Scaled fulcrum pivot and geometry:
+    const fx = 0.046 * sW, fy = 0.118 * sH; // Fulcrum center
+    const cosT = Math.cos(tilt), sinT = Math.sin(tilt);
+
+    // Dynamic beam tips rotated around fulcrum:
+    const beamL_dx = -0.160 * sW - fx;
+    const tipL_x = fx + beamL_dx * cosT;
+    const tipL_y = fy + beamL_dx * sinT;
+    const deltaL_x = tipL_x - (-0.160 * sW);
+    const deltaL_y = tipL_y - fy;
+
+    const beamR_dx = 0.256 * sW - fx;
+    const tipR_x = fx + beamR_dx * cosT;
+    const tipR_y = fy + beamR_dx * sinT;
+    const deltaR_x = tipR_x - (0.256 * sW);
+    const deltaR_y = tipR_y - fy;
+
+    // Pan bowl anchors (gravity suspended below tips):
+    const panL_x = C.x - 0.160 * sW + deltaL_x;
+    const panL_y = C.y + 0.395 * sH + deltaL_y;
+    const panR_x = C.x + 0.256 * sW + deltaR_x;
+    const panR_y = C.y + 0.395 * sH + deltaR_y;
+    const panRadius = Math.max(16, Math.min(32, 0.058 * sW));
+
+    // A. Render Justitia's stippled marble figure
+    if (scalePoints.length) {
+      for (let i = 0; i < scalePoints.length; i++) {
+        const q = scalePoints[i];
+        let dx = q.nx * sW;
+        let dy = q.ny * sH;
+
+        const breathe = Math.sin(t * 1.4 + q.ph) * 0.8;
+        const shockDisp = strikeShock > 0.05
+          ? Math.sin(q.dist * 18 - t * 8) * 2.0 * strikeShock
+          : 0;
+        const px = C.x + dx + shockDisp * (q.nx / (q.dist || 1));
+        const py = C.y + dy + breathe + shockDisp * (q.ny / (q.dist || 1));
+
+        let alpha = q.lum * 0.72;
+        if (isMixing) {
+          alpha = Math.min(1.0, alpha * (1.05 + 0.3 * Math.sin(t * 3.2 + q.ph)));
+        }
+        if (strikeShock > 0.1) {
+          alpha = Math.min(1.0, alpha * (1.0 + strikeShock * 0.55));
+        }
+
+        if (isMixing && q.lum > 0.62) {
+          ctx.fillStyle = 'rgba(215, 230, 255, ' + alpha.toFixed(3) + ')';
+        } else if (strikeShock > 0.2 && q.lum > 0.5) {
+          ctx.fillStyle = 'rgba(240, 246, 255, ' + alpha.toFixed(3) + ')';
+        } else {
+          ctx.fillStyle = 'rgba(232, 238, 250, ' + alpha.toFixed(3) + ')';
+        }
+        ctx.fillRect(px, py, q.size, q.size);
+      }
+
+      // B. Architectural Balance Scales (Glowing Antique Brass & Indigo)
+      ctx.save();
+      const scaleGold = isMixing ? 'rgba(199, 210, 254, 0.95)' : 'rgba(245, 210, 140, 0.95)';
+      const chainGold = isMixing ? 'rgba(199, 210, 254, 0.55)' : 'rgba(235, 195, 125, 0.55)';
+
+      // Central Fulcrum Stem from hand down to pivot
+      ctx.lineWidth = 1.4;
+      ctx.strokeStyle = scaleGold;
+      ctx.beginPath();
+      ctx.moveTo(C.x + fx, C.y + fy - 0.12 * sH);
+      ctx.lineTo(C.x + fx, C.y + fy);
+      ctx.stroke();
+
+      // Fulcrum Pivot Jewel
+      ctx.fillStyle = isMixing ? '#C7D2FE' : '#F5D08A';
+      ctx.shadowColor = isMixing ? '#818CF8' : '#F5D08A';
+      ctx.shadowBlur = 10;
+      ctx.beginPath();
+      ctx.arc(C.x + fx, C.y + fy, 3.5, 0, 6.2832);
+      ctx.fill();
+      ctx.shadowBlur = 0;
+
+      // Rotated Balance Beam
+      ctx.lineWidth = 1.8;
+      ctx.strokeStyle = scaleGold;
+      ctx.beginPath();
+      ctx.moveTo(C.x + tipL_x, C.y + tipL_y);
+      ctx.lineTo(C.x + tipR_x, C.y + tipR_y);
+      ctx.stroke();
+
+      // Left Pan Suspension Chains (3 links)
+      ctx.lineWidth = 0.9;
+      ctx.strokeStyle = chainGold;
+      ctx.beginPath();
+      ctx.moveTo(C.x + tipL_x, C.y + tipL_y);
+      ctx.lineTo(panL_x - panRadius * 0.85, panL_y);
+      ctx.moveTo(C.x + tipL_x, C.y + tipL_y);
+      ctx.lineTo(panL_x + panRadius * 0.85, panL_y);
+      ctx.moveTo(C.x + tipL_x, C.y + tipL_y);
+      ctx.lineTo(panL_x, panL_y);
+      ctx.stroke();
+
+      // Left Pan Bowl
+      ctx.lineWidth = 1.6;
+      ctx.strokeStyle = scaleGold;
+      ctx.beginPath();
+      ctx.ellipse(panL_x, panL_y, panRadius, panRadius * 0.28, 0, 0, Math.PI);
+      ctx.stroke();
+
+      // Right Pan Suspension Chains (3 links)
+      ctx.lineWidth = 0.9;
+      ctx.strokeStyle = chainGold;
+      ctx.beginPath();
+      ctx.moveTo(C.x + tipR_x, C.y + tipR_y);
+      ctx.lineTo(panR_x - panRadius * 0.85, panR_y);
+      ctx.moveTo(C.x + tipR_x, C.y + tipR_y);
+      ctx.lineTo(panR_x + panRadius * 0.85, panR_y);
+      ctx.moveTo(C.x + tipR_x, C.y + tipR_y);
+      ctx.lineTo(panR_x, panR_y);
+      ctx.stroke();
+
+      // Right Pan Bowl
+      ctx.lineWidth = 1.6;
+      ctx.strokeStyle = scaleGold;
+      ctx.beginPath();
+      ctx.ellipse(panR_x, panR_y, panRadius, panRadius * 0.28, 0, 0, Math.PI);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    // 4. Cryptographic State HUD Badge above Justitia's veil
+    ctx.save();
+    ctx.font = '500 10px "Geist Mono", ui-monospace, monospace';
+    ctx.textAlign = 'center';
+    const badgeText = p < 0.25
+      ? '01 · TRANSPARENT STATE · SCALES TILTED'
+      : p < 0.50
+        ? '02 · CLIENT-SIDE PROOF · ENTERING FULCRUM'
+        : p < 0.76
+          ? '03 · POSEIDON EQUILIBRIUM · IN = OUT'
+          : '04 · UNLINKED DESTINATION · PROVEN';
+    const bw = ctx.measureText(badgeText).width + 20;
+    const by = C.y - sH * 0.58;
+    
+    // Glass pill container
+    ctx.fillStyle = 'rgba(3, 4, 7, 0.85)';
+    ctx.strokeStyle = isMixing ? 'rgba(165, 180, 252, 0.3)' : (p < 0.25 ? 'rgba(251, 113, 133, 0.3)' : 'rgba(165, 180, 252, 0.3)');
+    ctx.lineWidth = 1;
+    rrect(ctx, C.x - bw / 2, by - 12, bw, 20, 10);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = isMixing ? accRGB : (p < 0.25 ? HOT : accRGB);
+    ctx.fillText(badgeText, C.x, by + 2);
+    ctx.restore();
+
+    const wA = 1 - clamp((p - 0.12) / 0.14);
+    if (wA > 0.01) {
+      const obs = [[-0.9, -1.7], [0.7, -1.9], [1.6, -1.1], [-1.5, 1.0], [1.3, 1.4], [-0.1, 2.0]];
+      ctx.save();
+      ctx.setLineDash([3, 6]); ctx.lineDashOffset = -t * 24;
+      ctx.strokeStyle = HOT; ctx.lineWidth = 1;
+      obs.forEach(([ox, oy], i) => {
+        const x = Math.max(10, Math.min(w - 10, A.x + ox * cw * 0.75)), y = Math.max(10, Math.min(h - 10, A.y + oy * ch * 1.1));
+        ctx.globalAlpha = wA * 0.55;
+        ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(A.x, A.y); ctx.stroke();
+        ctx.globalAlpha = wA * (0.5 + 0.5 * Math.sin(t * 3 + i));
+        ctx.fillStyle = HOT; ctx.beginPath(); ctx.arc(x, y, 3.5, 0, 6.2832); ctx.fill();
+      });
+      ctx.restore();
+    }
+
+    ctx.font = '500 11px "Geist Mono", ui-monospace, monospace'; ctx.textAlign = 'center';
+    const aA = 1 - f1;
+    if (aA > 0.01) {
+      ctx.globalAlpha = aA * 0.8; ctx.strokeStyle = HOT; ctx.lineWidth = 1;
+      rrect(ctx, A.x - cw / 2 - 8, A.y - ch / 2 - 8, cw + 16, ch + 16, 12); ctx.stroke();
+      ctx.globalAlpha = aA; ctx.fillStyle = '#EEF2F6';
+      ctx.fillText('0x71C8…c9FE', A.x, A.y + ch / 2 + 30);
+      ctx.fillStyle = HOT; ctx.fillText(narrow ? 'VISIBLE' : '14.20 ETH · EXPOSED ON-CHAIN', A.x, A.y + ch / 2 + 48);
+    }
+    if (f2 > 0.01) {
+      ctx.globalAlpha = f2 * 0.8; ctx.strokeStyle = accRGB; ctx.lineWidth = 1;
+      rrect(ctx, B.x - cw / 2 - 8, B.y - ch / 2 - 8, cw + 16, ch + 16, 12); ctx.stroke();
+      ctx.globalAlpha = f2; ctx.fillStyle = '#EEF2F6';
+      ctx.fillText('0x4663…04AB', B.x, B.y + ch / 2 + 30);
+      ctx.fillStyle = accRGB; ctx.fillText(narrow ? 'FRESH' : 'FRESH ADDRESS · NO HISTORY', B.x, B.y + ch / 2 + 48);
+      ctx.save();
+      ctx.globalAlpha = f2 * 0.5; ctx.setLineDash([4, 7]); ctx.strokeStyle = '#9AA4AF';
+      const y0 = A.y + ch / 2 + 62, cyy = sceneY + h * 0.3;
+      ctx.beginPath(); ctx.moveTo(A.x, y0); ctx.quadraticCurveTo(w / 2, cyy, B.x, y0); ctx.stroke();
+      ctx.restore();
+      const my = 0.5 * y0 + 0.5 * cyy;
+      ctx.globalAlpha = f2; ctx.strokeStyle = HOT; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(w / 2 - 8, my - 8); ctx.lineTo(w / 2 + 8, my + 8); ctx.moveTo(w / 2 + 8, my - 8); ctx.lineTo(w / 2 - 8, my + 8); ctx.stroke();
+      ctx.fillStyle = '#9AA4AF'; ctx.fillText('NO LINK', w / 2, my + 28);
+    }
+
+    const oA = clamp((p - 0.26) / 0.18) * (1 - clamp((p - 0.78) / 0.16));
+    if (oA > 0.01) {
+      ctx.fillStyle = accRGB;
+      for (const o of others) {
+        const an = o.ai + t * (0.65 + o.sp * 0.45) + o.ri * 1.6;
+        const rSpiral = rad * (0.65 + o.ri * 1.55);
+        const ox = C.x + Math.cos(an) * rSpiral;
+        const oy = C.y + Math.sin(an) * rSpiral * 0.82;
+        ctx.globalAlpha = oA * (0.18 + o.ri * 0.42);
+        ctx.fillRect(ox, oy, 1.4, 1.4);
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    const ctrl1 = { x: (A.x + C.x) / 2, y: sceneY - h * 0.28 };
+    const ctrl2 = { x: (C.x + B.x) / 2, y: sceneY - h * 0.28 };
+    const fulcrumPt = { x: C.x + fx, y: C.y + fy };
+
+    for (let pass = 0; pass < 2; pass++) {
+      for (const q of you) {
+        const ti = ease(clamp(f1 * 1.6 - q.di * 0.6));
+        const to = ease(clamp(f2 * 1.6 - q.di * 0.6));
+        const exposed = ti < 0.52 && to === 0;
+        if ((pass === 0) !== exposed) continue;
+
+        // Poseidon logarithmic spiral vortex positioning inside the veil
+        const an = q.ai + t * 0.65 * (1.25 - q.ri) + q.ri * 1.5;
+        const rSpiral = rad * (0.65 + q.ri * 1.35);
+        const hpnt = { x: C.x + Math.cos(an) * rSpiral, y: fulcrumPt.y + Math.sin(an) * rSpiral * 0.80 };
+
+        let pt;
+        if (to > 0) {
+          // Emerge directly from right scale pan into fresh Wallet B
+          const startPt = { x: panR_x + Math.sin(t * 2 + q.ph) * 8, y: panR_y + Math.cos(t * 2 + q.ph) * 4 };
+          pt = bez(startPt, ctrl2, { x: B.x + q.u * cw, y: B.y + q.v * ch }, to);
+        } else if (ti > 0) {
+          // Flow from Wallet A into left scale pan, then ascend up chains into fulcrum
+          const originPt = { x: A.x + q.u * cw + Math.sin(t * 1.3 + q.ph) * 0.8, y: A.y + q.v * ch + Math.cos(t * 1.1 + q.ph) * 0.8 };
+          if (ti < 0.55) {
+            const u = ti / 0.55;
+            pt = bez(originPt, { x: (A.x + panL_x) / 2, y: sceneY - h * 0.24 }, { x: panL_x, y: panL_y }, u);
+          } else {
+            const u = (ti - 0.55) / 0.45;
+            pt = { x: panL_x + (hpnt.x - panL_x) * u, y: panL_y + (hpnt.y - panL_y) * u };
+          }
+        } else {
+          pt = { x: A.x + q.u * cw + Math.sin(t * 1.3 + q.ph) * 0.8, y: A.y + q.v * ch + Math.cos(t * 1.1 + q.ph) * 0.8 };
+        }
+
+        if (exposed) {
+          ctx.fillStyle = HOT;
+          ctx.globalAlpha = 0.85;
+        } else {
+          ctx.fillStyle = (pass === 1 && to > 0.8) ? '#EEF2F6' : accRGB;
+          ctx.globalAlpha = 0.95;
+        }
+        ctx.fillRect(pt.x, pt.y, 1.8, 1.8);
+      }
+    }
+
+    // Cryptographic core ZK pulse at center of the veil
+    const corePulse = (Math.sin(t * 2.2) + 1) * 0.5;
+    ctx.fillStyle = accRGB;
+    ctx.shadowColor = accRGB;
+    ctx.shadowBlur = 14 + corePulse * 10;
+    ctx.beginPath();
+    ctx.arc(C.x, C.y + sH * 0.04, 2.2 + corePulse * 1.0, 0, 6.2832);
+    ctx.fill();
+    ctx.shadowBlur = 0;
+    ctx.globalAlpha = 1;
+  }
+
+  /* ---------------- game: follow the coin ---------------- */
+  const table = document.getElementById('table');
+  const msg = document.getElementById('shellMsg');
+  const shellBtn = document.getElementById('shellBtn');
+  const COIN = 2;
+  let pos = [0, 1, 2, 3, 4], shell = 'idle', picked = -1, timers = [];
+  const spot = document.getElementById('spot');
+  const swapCount = document.getElementById('swapCount');
+  const oddsText = document.getElementById('oddsText');
+  let swaps = 0;
+
+  const coinSVG = '<svg viewBox="0 0 56 56" aria-hidden="true">' +
+    '<circle cx="28" cy="28" r="27.5" fill="url(#cg-rim)"/>' +
+    '<circle cx="28" cy="28" r="22.5" fill="url(#cg-face)" stroke="rgba(255,255,255,.7)" stroke-width=".8"/>' +
+    '<circle cx="28" cy="28" r="20" fill="none" stroke="rgba(77,96,116,.35)" stroke-width=".6" stroke-dasharray="1 2"/>' +
+    '<polygon points="28,14 38,28 28,33 18,28" fill="#4D6074"/>' +
+    '<polygon points="28,14 28,33 18,28" fill="#3B4B5E"/>' +
+    '<polygon points="28,35 38,30 28,42" fill="#2A3746"/>' +
+    '<polygon points="28,35 28,42 18,30" fill="#3B4B5E"/></svg>';
+
+  // 5 Veiled Sentinel Custodians on Plinths
+  const hoods = [0, 1, 2, 3, 4].map((id) => {
+    const el = document.createElement('div');
+    el.className = 'hood';
+    el.innerHTML = '<span class="shadow" aria-hidden="true"></span>' +
+      '<div class="plinth" aria-hidden="true"></div>' +
+      '<span class="coin" aria-hidden="true"><span class="spin">' + coinSVG + '</span><span class="coin-label">0.1 ETH</span></span>' +
+      '<button type="button" disabled aria-label="Veiled Custodian ' + (id + 1) + '">' +
+        '<img class="bust-img" src="./assets/veiled_bust_node.png" alt="Veiled Custodian ' + (id + 1) + '" draggable="false">' +
+      '</button>';
+    table.appendChild(el);
+    const btn = el.querySelector('button');
+    btn.addEventListener('click', () => { if (shell === 'pick') { picked = id; shell = 'reveal'; renderShell(); } });
+    return { el, btn, coin: el.querySelector('.coin'), img: el.querySelector('.bust-img') };
+  });
+
+  const MSGS = {
+    idle: 'Five silent custodians on Robinhood Chain. One deposit of 0.1 ETH. Watch the shuffle, then track your asset through the zero-knowledge veil.',
+    drop: 'Into the veil it goes…',
+    shuffle: 'Keep watching…',
+    pick: 'Which custodian holds your 0.1 ETH? Pick one.',
+    reveal: "Every custodian holds 0.1 ETH. In the zero-knowledge pool, every exit is mathematically indistinguishable."
+  };
+
+  function renderShell() {
+    hoods.forEach((h, id) => {
+      const isCoin = id === COIN;
+      let coinOp = 0, coinY = 0, hoodY = 0;
+      
+      if (shell === 'idle') {
+        // Coin floats high in spotlight above center custodian
+        coinOp = isCoin ? 1 : 0;
+        coinY = isCoin ? -210 : 0;
+        hoodY = 0;
+      } else if (shell === 'drop') {
+        // Coin drops down straight into the custodian's veil/plinth
+        coinOp = isCoin ? 1 : 0;
+        coinY = 0;
+        hoodY = 0;
+      } else if (shell === 'shuffle' || shell === 'pick') {
+        // Completely concealed inside the custodian's veil
+        coinOp = 0;
+        coinY = 0;
+        hoodY = 0;
+      } else if (shell === 'reveal') {
+        // Custodians lift up into the air, revealing glowing coins on plinths!
+        coinOp = 1;
+        coinY = 0;
+        hoodY = -115;
+      }
+
+      h.el.style.left = pos[id] * 20 + '%';
+      h.el.classList.toggle('idle-coin', shell === 'idle' && isCoin);
+      h.el.classList.toggle('lifted', shell === 'reveal');
+      h.el.classList.toggle('revealed', shell === 'reveal');
+      h.el.classList.toggle('picked', picked === id);
+      
+      h.coin.style.opacity = coinOp;
+      h.coin.style.transform = 'translateY(' + coinY + 'px)';
+      h.btn.style.transform = hoodY ? 'translateY(' + hoodY + 'px)' : '';
+      h.btn.disabled = shell !== 'pick';
+      h.btn.setAttribute('aria-label', 'Veiled Custodian ' + (pos[id] + 1));
+    });
+
+    spot.style.left = (pos[COIN] * 20 + 10) + '%';
+    spot.classList.toggle('off', shell === 'shuffle' || shell === 'pick');
+    spot.classList.toggle('flood', shell === 'reveal');
+    swapCount.textContent = swaps;
+    oddsText.textContent = shell === 'reveal' ? '5 in 5' : '1 in 5';
+    msg.textContent = MSGS[shell];
+    msg.classList.toggle('reveal', shell === 'reveal');
+    shellBtn.hidden = !(shell === 'idle' || shell === 'reveal');
+    shellBtn.textContent = shell === 'reveal' ? 'Shuffle Again' : 'Initiate Shuffle';
+  }
+
+  const later = (ms, fn) => timers.push(setTimeout(fn, ms));
+  const hop = (h) => { h.el.classList.remove('hop'); void h.el.offsetWidth; h.el.classList.add('hop'); };
+  
+  shellBtn.addEventListener('click', () => {
+    if (shell === 'drop' || shell === 'shuffle') return;
+    timers.forEach(clearTimeout); timers = [];
+    picked = -1; swaps = 0;
+    
+    // Step 1: Drop the coin down into the custodian's veil
+    shell = 'drop';
+    renderShell();
+    
+    const step = 300, total = 14;
+    // Step 2: Begin shuffle after drop animation settles (850ms)
+    later(850, () => {
+      shell = 'shuffle';
+      renderShell();
+    });
+    
+    // Step 3: 14 rapid swaps with hop physics
+    for (let i = 0; i < total; i++) {
+      later(1100 + i * step, () => {
+        const a = Math.random() < 0.55 ? COIN : Math.floor(Math.random() * 5);
+        let b = Math.floor(Math.random() * 5);
+        if (b === a) b = (a + 1 + Math.floor(Math.random() * 4)) % 5;
+        [pos[a], pos[b]] = [pos[b], pos[a]];
+        swaps++;
+        hop(hoods[a]); hop(hoods[b]);
+        renderShell();
+      });
+    }
+    
+    // Step 4: Ready to pick
+    later(1100 + total * step + 350, () => {
+      shell = 'pick';
+      renderShell();
+      hoods[0].btn.focus({ preventScroll: true });
+    });
+  });
+
+  renderShell();
+
+  /* ---------------- statement: words sharpen as they scroll into view ---------------- */
+  const words = [...document.querySelectorAll('.big span')];
+  const sharpen = () => {
+    const vh = innerHeight;
+    words.forEach((w, i) => {
+      const r = w.getBoundingClientRect();
+      const p = Math.max(0, Math.min(1, (vh * 0.95 - r.top) / (vh * 0.38) - i * 0.12));
+      const t = reduce ? 1 : p;
+      w.style.filter = t >= 1 ? 'none' : 'blur(' + ((1 - t) * 18).toFixed(1) + 'px)';
+      w.style.opacity = (0.12 + 0.88 * t).toFixed(3);
+      w.style.transform = t >= 1 ? 'none' : 'translateY(' + ((1 - t) * 34).toFixed(1) + 'px)';
+    });
+  };
+  addEventListener('scroll', () => requestAnimationFrame(sharpen), { passive: true });
+  addEventListener('resize', sharpen);
+  sharpen();
+
+  /* ---------------- enter: flashlight wordmark ---------------- */
+  const flash = document.getElementById('flashbox');
+  flash.parentElement.addEventListener('pointermove', (e) => {
+    const r = flash.getBoundingClientRect();
+    flash.style.setProperty('--cx', (e.clientX - r.left) + 'px');
+    flash.style.setProperty('--cy', (e.clientY - r.top) + 'px');
+  });
+  flash.parentElement.addEventListener('pointerleave', () => { flash.style.setProperty('--cx', '-999px'); flash.style.setProperty('--cy', '-999px'); });
+
+  /* ---------------- loop ---------------- */
+  sizeHero(); sizeStory();
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(sizeHero).observe(hcv);
+    new ResizeObserver(sizeStory).observe(scv);
+  } else addEventListener('resize', () => { sizeHero(); sizeStory(); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { sizeHero(); sizeStory(); });
+  const loop = () => {
+    const t = (performance.now() - t0) / 1000;
+    drawHero(t); drawStory(t);
+    requestAnimationFrame(loop);
+  };
+  requestAnimationFrame(loop);
+})();
+</script>
+
+
+</body>
+</html>

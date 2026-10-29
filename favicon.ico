@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="c" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1E2230"/>
+      <stop offset="50%" stop-color="#10141D"/>
+      <stop offset="100%" stop-color="#05070B"/>
+    </linearGradient>
+    <radialGradient id="g" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#C7D2FE"/>
+      <stop offset="50%" stop-color="#818CF8"/>
+      <stop offset="100%" stop-color="#818CF8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#030405"/>
+  <g transform="translate(6 5) scale(1.857)">
+    <!-- Outer Veiled Cowl -->
+    <path d="M 14 1.8 C 17.5 1.8 22.5 5.5 23.5 10.5 C 24.5 15 25 20 25.5 26 L 2.5 26 C 3 20 3.5 15 4.5 10.5 C 5.5 5.5 10.5 1.8 14 1.8 Z" fill="url(#c)" stroke="#A5B4FC" stroke-width="0.9" stroke-linejoin="round"/>
+    <!-- Inner Sheer Face -->
+    <path d="M 14 6.5 C 17.5 6.5 19 9.5 19 13.5 C 19 17.5 17 20 14 20.2 C 11 20 9 17.5 9 13.5 C 9 9.5 10.5 6.5 14 6.5 Z" fill="#020306" stroke="rgba(165,180,252,0.4)" stroke-width="0.4"/>
+    <!-- Veil Cascade Folds -->
+    <path d="M 14 6.5 Q 16.5 11 18 17" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="0.35"/>
+    <path d="M 14 6.5 Q 11.5 11 10 17" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="0.35"/>
+    <!-- Serene Veiled Eye Arches -->
+    <path d="M 10.5 13.8 Q 11.8 14.7 13.1 13.8" fill="none" stroke="#C7D2FE" stroke-width="0.6" stroke-linecap="round"/>
+    <path d="M 14.9 13.8 Q 16.2 14.7 17.5 13.8" fill="none" stroke="#C7D2FE" stroke-width="0.6" stroke-linecap="round"/>
+  </g>
+</svg>

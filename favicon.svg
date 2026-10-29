@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="v-fav-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0E121B"/>
+      <stop offset="100%" stop-color="#030407"/>
+    </linearGradient>
+    <linearGradient id="v-fav-stone" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="60%" stop-color="#C7D2FE"/>
+      <stop offset="100%" stop-color="#818CF8"/>
+    </linearGradient>
+    <radialGradient id="v-fav-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="40%" stop-color="#A5B4FC"/>
+      <stop offset="100%" stop-color="#818CF8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#v-fav-bg)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+  <!-- Chiseled Roman V -->
+  <path d="M 12 14 L 22.5 14 L 32 44 L 41.5 14 L 52 14 L 53.2 18 L 48.5 18 L 35.5 50 L 28.5 50 L 15.5 18 L 10.8 18 Z" fill="url(#v-fav-stone)"/>
+  <!-- Delicate sheer veil drapery lines -->
+  <path d="M 22.5 14 Q 32 30 41.5 14" stroke="rgba(199,210,254,0.6)" stroke-width="1.6" fill="none"/>
+  <path d="M 25 21 Q 32 35 39 21" stroke="rgba(199,210,254,0.4)" stroke-width="1.2" fill="none"/>
+  <!-- Central Zero-Knowledge Jewel -->
+  <circle cx="32" cy="30" r="3.2" fill="#FFFFFF"/>
+  <circle cx="32" cy="30" r="7.5" fill="url(#v-fav-glow)"/>
+</svg>
