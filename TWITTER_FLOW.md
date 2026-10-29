@@ -1,6 +1,7 @@
 # Veiled Privacy — Complete Twitter/X Campaign & Launch Flow (Robinhood Chain & Pons Family)
 
-> **Project**: Veiled Privacy Protocol (`$VEILED`)  
+> **Project**: Veiled
+> **Token Ticker**: **`$VEIL`**  
 > **Ecosystem**: Robinhood Chain (EVM · Chain ID: `4663` · Native Asset: `ETH`)  
 > **Launchpad**: Pons Family Launchpad (`https://ponsfamily.com/launchpad`)  
 > **Block Explorer**: `robinhoodchain.blockscout.com`  

@@ -6,6 +6,8 @@ An EVM-native, zero-knowledge state shield engineered for **Robinhood Chain (EVM
 
 Official Website: [https://veiled.space/](https://veiled.space/)  
 Official X / Twitter: [@veiledprivacy](https://x.com/veiledprivacy)  
+Token Name: **Veiled** | Ticker: **`$VEIL`**  
+Fair Launch: [Pons Family Launchpad](https://ponsfamily.com/launchpad)  
 Block Explorer: [robinhoodchain.blockscout.com](https://robinhoodchain.blockscout.com)  
 
 ---

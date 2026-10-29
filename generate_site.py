@@ -6,7 +6,7 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def generate_clone(
     name="Veiled",
-    ticker="$VEILED",
+    ticker="$VEIL",
     ca="0x4663a8B99641D3F82f2c8d2051E840E819F34663",
     twitter="@veiledprivacy",
     email="contact@veiled.space",

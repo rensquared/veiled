@@ -6,12 +6,14 @@
 
 ## 1. Project Overview & Identity
 
-* **Project Name**: Veiled Privacy Protocol (`$VEILED`)
+* **Token Name**: **Veiled**
+* **Token Ticker / Symbol**: **`$VEIL`**
+* **Protocol Name**: Veiled
 * **Brand Wordmark**: **`V E I L E D`** (tracked uppercase editorial serif, inspired by [noumen.xyz](https://www.noumen.xyz/))
 * **Official Domain**: **`https://veiled.space/`**
 * **Contact Email**: `contact@veiled.space`
 * **X / Twitter**: `@veiledprivacy` (`https://x.com/veiledprivacy`)
-* **Brand Logo Glyph**: **Chiseled Veiled Monogram (`V`)** with delicate sheer veil drapery contours and central glowing zero-knowledge focal star.
+* **Brand Logo Glyph**: Official circular stippled neoclassical bust of *The Veiled Sentinel* draped in translucent marble chiaroscuro (`assets/logo.png`).
 * **Target Network**: Robinhood Chain (EVM · Chain ID: `4663` · Native Asset: `ETH`)
 * **Launchpad**: Pons Family Launchpad (`https://ponsfamily.com/launchpad`)
 * **Block Explorer**: Blockscout (`https://robinhoodchain.blockscout.com`)
