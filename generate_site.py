@@ -25,7 +25,7 @@ def generate_clone(
     
     # 1. Title and basic metadata
     html = re.sub(r'<title>.*?</title>', f'<title>{name_cap} Privacy · Zero-Knowledge State Shield on Robinhood Chain</title>', html)
-    html = re.sub(r'<meta name="description" content=".*?">', f'<meta name="description" content="Shield ETH and USDC on Robinhood Chain (EVM {chain_id}) into cryptographic zero-knowledge pools. Fair launching via Pons Family Launchpad with mathematical finality.">', html)
+    html = re.sub(r'<meta name="description" content=".*?">', f'<meta name="description" content="Shield ETH and USDG on Robinhood Chain (EVM {chain_id}) into cryptographic zero-knowledge pools. Fair launching via Pons Family Launchpad with mathematical finality.">', html)
     html = html.replace('content="Hollow"', f'content="{name_cap}"')
     html = html.replace('https://www.usehollow.xyz/hollow-share.png', f'{domain}share.png')
     html = html.replace('https://www.usehollow.xyz/', domain)
@@ -60,7 +60,7 @@ def generate_clone(
     # 4. Elevated Hero & Story Copy (EVM & Robinhood Chain)
     html = html.replace('Private money · Solana', f'Zero-Knowledge Privacy · Robinhood Chain (EVM {chain_id})')
     html = html.replace('Leave no <em>trace.</em>', 'Silence on the ledger.<br>Leave no <em>shadow.</em>')
-    html = html.replace('Shield SOL and USDC, then send and hold with nothing pointing back to you.', f'Shield ETH and USDC into cryptographic zero-knowledge pools on Robinhood Chain. Fair launching via Pons Family Launchpad with zero transaction lineage.')
+    html = html.replace('Shield SOL and USDG, then send and hold with nothing pointing back to you.', f'Shield ETH and USDG into cryptographic zero-knowledge pools on Robinhood Chain. Fair launching via Pons Family Launchpad with zero transaction lineage.')
     html = html.replace('Watch it work <span class="bob">↓</span>', 'Explore Protocol <span class="bob">↓</span>')
     html = html.replace('Live on Solana', f'Robinhood Chain (EVM {chain_id}) · Pons Family Launchpad')
 
@@ -71,7 +71,7 @@ def generate_clone(
     
     html = html.replace('02 · Shield', '02 · Cryptographic Shield')
     html = html.replace('Step into the hood.', 'Sever on-chain lineage.')
-    html = html.replace('One signature drops your SOL or USDC into the shared pool. That is the last thing anyone sees.', 'A single client-side zero-knowledge proof deposits your ETH or USDC on Robinhood Chain into the Merkle accumulator pool. That is the last trace anyone sees.')
+    html = html.replace('One signature drops your SOL or USDG into the shared pool. That is the last thing anyone sees.', 'A single client-side zero-knowledge proof deposits your ETH or USDG on Robinhood Chain into the Merkle accumulator pool. That is the last trace anyone sees.')
 
     html = html.replace('03 · Blend in', '03 · Anonymity Swarm')
     html = html.replace("Inside, you're noise.", 'Dissolve into noise.')

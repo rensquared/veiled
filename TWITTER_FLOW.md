@@ -15,7 +15,7 @@
 | :--- | :--- | :--- |
 | **Handle** | `@veiledprivacy` (or `@veiledprotocol`) | Clean, single-word or dual-word authority. |
 | **Display Name** | `Veiled · Robinhood Chain` | Positions the protocol firmly in the Robinhood Chain ecosystem. |
-| **Bio** | `Zero-knowledge state shield on Robinhood Chain. Sever on-chain lineage for ETH & USDC with mathematical finality. Fair launching on @ponsfamily. Silence is self-defense.` | High conversion; immediate network and launchpad clarity. |
+| **Bio** | `Zero-knowledge state shield on Robinhood Chain. Sever on-chain lineage for ETH & USDG with mathematical finality. Fair launching on @ponsfamily. Silence is self-defense.` | High conversion; immediate network and launchpad clarity. |
 | **Location** | `Robinhood Chain · EVM 4663` | Chain ID tag + ecosystem positioning. |
 | **Website** | `https://ponsfamily.com/launchpad` (or `https://veiledprivacy.xyz`) | Direct link to the fair launch bonding curve. |
 | **Avatar** | Obsidian hooded phantom with dual celestial indigo glowing eyes (`#A5B4FC`) on pitch black (`#030405`). | High contrast; instantly recognizable as a circle avatar on mobile feeds. |
@@ -96,7 +96,7 @@ Post this thread as the token fair-launches on Pons Family Launchpad.
 ### Tweet 3 (The Core Solution)
 > Veiled introduces non-custodial, client-side zero-knowledge state shielding to Robinhood Chain (Chain ID: 4663).
 >
-> Commit native ETH and USDC into a cryptographic Merkle accumulator, sever the transaction lineage, and withdraw clean funds to any address with zero historical link to the origin.
+> Commit native ETH and USDG into a cryptographic Merkle accumulator, sever the transaction lineage, and withdraw clean funds to any address with zero historical link to the origin.
 >
 > Here’s how the cryptography works under the hood ↴
 
@@ -105,7 +105,7 @@ Post this thread as the token fair-launches on Pons Family Launchpad.
 ### Tweet 4 (Step 1: The Shield)
 > **Phase 01: Client-Side Poseidon Commitments**
 >
-> When you deposit ETH or USDC into Veiled, a cryptographic note (`commitment`) is computed client-side inside your browser via WebAssembly:
+> When you deposit ETH or USDG into Veiled, a cryptographic note (`commitment`) is computed client-side inside your browser via WebAssembly:
 >
 > `commitment = Poseidon(secret, nullifier)`
 >
@@ -188,7 +188,7 @@ Post this thread as the token fair-launches on Pons Family Launchpad.
 | **Day 2** | **The EVM Threat Model** | Visual teardown: "How Blockscout and Arkham cluster your 'burner' wallets using common gas funders on L2s." |
 | **Day 3** | **Interactive Highlight** | Video clip of the dust particle hood responding to cursor clicks: "Every particle is an independent spring-force vector on Robinhood Chain." |
 | **Day 4** | **Pons Family Ecosystem Synergy** | Highlighting why Pons Family is the premier launchpad for Robinhood Chain tokens with creator-first revenue splits. |
-| **Day 5** | **TVS (Total Volume Shielded) Report** | Clean terminal-style status card: Total ETH & USDC shielded, proof verification times, and active relayer nodes. |
+| **Day 5** | **TVS (Total Volume Shielded) Report** | Clean terminal-style status card: Total ETH & USDG shielded, proof verification times, and active relayer nodes. |
 | **Day 6** | **Community & Lore** | Atmospheric high-contrast meme/quote: *"Silence on the ledger. Leave no shadow."* |
 | **Day 7** | **Graduation & DEX Liquidity** | Celebrating bonding curve graduation and locked Uniswap liquidity on Robinhood Chain! |
 

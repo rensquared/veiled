@@ -12,7 +12,7 @@ Block Explorer: [robinhoodchain.blockscout.com](https://robinhoodchain.blockscou
 
 ## Overview
 
-Public blockchains cluster, track, and profile wallet activities in real time. **VEILED** introduces client-side zero-knowledge state shielding to Robinhood Chain, enabling users to shield native `ETH` and `USDC` into Poseidon Merkle accumulators, break transaction graph lineage, and withdraw clean funds to unlinked destination addresses via decentralized relayers.
+Public blockchains cluster, track, and profile wallet activities in real time. **VEILED** introduces client-side zero-knowledge state shielding to Robinhood Chain, enabling users to shield native `ETH` and `USDG` into Poseidon Merkle accumulators, break transaction graph lineage, and withdraw clean funds to unlinked destination addresses via decentralized relayers.
 
 ### Core Architecture
 

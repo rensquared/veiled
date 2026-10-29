@@ -15,7 +15,7 @@
 * **Target Network**: Robinhood Chain (EVM · Chain ID: `4663` · Native Asset: `ETH`)
 * **Launchpad**: Pons Family Launchpad (`https://ponsfamily.com/launchpad`)
 * **Block Explorer**: Blockscout (`https://robinhoodchain.blockscout.com`)
-* **Core Value Proposition**: An EVM-native, zero-knowledge state shield allowing users on Robinhood Chain to shield native ETH and USDC into a Poseidon Merkle accumulator, break on-chain heuristics, and withdraw clean funds to unlinked recipient wallets via decentralized relayers.
+* **Core Value Proposition**: An EVM-native, zero-knowledge state shield allowing users on Robinhood Chain to shield native ETH and USDG into a Poseidon Merkle accumulator, break on-chain heuristics, and withdraw clean funds to unlinked recipient wallets via decentralized relayers.
 * **Aesthetic & Style**: Atmospheric, cinematic, minimalist noir with obsidian dark background (`#030405`), glowing celestial indigo accents (`#A5B4FC`), living HTML5 particle canvas physics, and dynamic typography.
 * **Typography System**:
   - **Brand Wordmark & Display**: **Instrument Serif** uppercase with wide tracking (`letter-spacing: 0.28em - 0.35em`, styled as `V E I L E D` like Noumen's `N O U M E N`).
